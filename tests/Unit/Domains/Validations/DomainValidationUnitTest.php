@@ -6,7 +6,7 @@ use Costa\Core\Domains\Exceptions\EntityValidationException;
 use Costa\Core\Domains\Validations\DomainValidation;
 use PHPUnit\Framework\TestCase;
 
-class DomainValidationTest extends TestCase
+class DomainValidationUnitTest extends TestCase
 {
     public function testDefaultMessage()
     {

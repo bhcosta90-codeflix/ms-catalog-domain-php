@@ -5,11 +5,10 @@ namespace Tests\Unit\Domains;
 use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Exceptions\EntityValidationException;
 use Costa\Core\Domains\ValueObject\Uuid;
-use DateTime;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class CategoryTest extends TestCase
+class CategoryUnitTest extends TestCase
 {
     public function testAttributes()
     {
