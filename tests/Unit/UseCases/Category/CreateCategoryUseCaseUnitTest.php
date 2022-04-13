@@ -5,6 +5,7 @@ namespace Tests\Unit\UseCase\Category;
 use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
 use Costa\Core\UseCases\Category\CreateCategoryUseCase;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryInput;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -12,8 +13,9 @@ use stdClass;
 
 final class CreateCategoryUseCaseUnitTest extends TestCase
 {
-    private CategoryRepositoryInterface $mockRepo;
     private Category $mockEntity;
+    private CategoryInput $mockInput;
+    private CategoryRepositoryInterface $mockRepo;
 
     public function testCreateNewCategory()
     {
@@ -24,15 +26,17 @@ final class CreateCategoryUseCaseUnitTest extends TestCase
             $uuid,
             $categoryName
         ]);
-        $this->mockRepo->shouldReceive('id')->andReturn($uuid);
+        $this->mockEntity->shouldReceive('id')->andReturn($uuid);
 
-        // var_dump($this->mockEntity);die;
+        $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
+        $this->mockRepo->shouldReceive('insert')->andReturn($this->mockEntity);
 
-        // $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
-        // $this->mockRepo->shouldReceive('insert')>andReturn($this->mockEntity);
+        $this->mockInput = Mockery::mock(CategoryInput::class, [
+            $categoryName
+        ]);
 
-        // $useCase = new CreateCategoryUseCase($this->mockRepo);
-        // $useCase->execute();
+        $useCase = new CreateCategoryUseCase($this->mockRepo);
+        $useCase->execute($this->mockInput);
 
         $this->assertTrue(true);
 

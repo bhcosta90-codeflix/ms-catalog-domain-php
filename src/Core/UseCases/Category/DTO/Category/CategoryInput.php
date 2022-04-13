@@ -2,7 +2,7 @@
 
 namespace Costa\Core\UseCases\Category\DTO\Category;
 
-final class CategoryInput
+class CategoryInput
 {
     public function __construct(
         public string $name,
