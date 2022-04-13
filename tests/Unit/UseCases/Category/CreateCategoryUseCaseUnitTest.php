@@ -24,7 +24,7 @@ final class CreateCategoryUseCaseUnitTest extends TestCase
             $uuid,
             $categoryName
         ]);
-        $this->mockRepo->shouldReceive('id')>andReturn($uuid);
+        $this->mockRepo->shouldReceive('id')->andReturn($uuid);
 
         // var_dump($this->mockEntity);die;
 
