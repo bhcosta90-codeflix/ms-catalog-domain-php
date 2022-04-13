@@ -7,7 +7,7 @@ use Costa\Core\Domains\Validations\DomainValidation;
 use Costa\Core\Domains\ValueObject\Uuid;
 use DateTime;
 
-final class Category
+class Category
 {
     use MagicMethodsTrait;
 
