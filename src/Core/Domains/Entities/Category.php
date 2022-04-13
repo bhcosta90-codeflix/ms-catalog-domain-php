@@ -41,7 +41,7 @@ final class Category
         $this->description = $description;
     }
 
-    public function validated()
+    protected function validated()
     {
         DomainValidation::strMaxLength($this->name);
         DomainValidation::strMinLength($this->name, 2);
