@@ -2,17 +2,18 @@
 
 namespace Tests\Unit\Domains;
 
-use Costa\Core\Domains\Entities\CategoryDomain;
+use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Exceptions\EntityValidationException;
 use Costa\Core\Domains\ValueObject\Uuid;
+use DateTime;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class CategoryDomainTest extends TestCase
+class CategoryTest extends TestCase
 {
     public function testAttributes()
     {
-        $category = new CategoryDomain(
+        $category = new Category(
             name: "teste",
             description: "New desc",
             isActive: true
@@ -22,11 +23,12 @@ class CategoryDomainTest extends TestCase
         $this->assertEquals('teste', $category->name);
         $this->assertEquals('New desc', $category->description);
         $this->assertTrue($category->isActive);
+        $this->assertNotEmpty($category->createdAt());
     }
 
     public function testDisabled()
     {
-        $category = new CategoryDomain(
+        $category = new Category(
             name: "teste"
         );
 
@@ -39,7 +41,7 @@ class CategoryDomainTest extends TestCase
 
     public function testEnabled()
     {
-        $category = new CategoryDomain(
+        $category = new Category(
             name: "teste",
             isActive: false
         );
@@ -56,11 +58,12 @@ class CategoryDomainTest extends TestCase
 
         $uuid = Uuid::random();
 
-        $category = new CategoryDomain(
+        $category = new Category(
             id: $uuid,
             name: "teste",
             description: "New desc",
-            isActive: true
+            isActive: true,
+            createdAt: '2022-01-01 00:00:00'
         );
 
         $category->update(
@@ -78,6 +81,7 @@ class CategoryDomainTest extends TestCase
 
         $this->assertEquals($uuid, $category->id);
         $this->assertEquals('new_name', $category->name);
+        $this->assertEquals('2022-01-01 00:00:00', $category->createdAt());
         $this->assertNull($category->description);
     }
 
@@ -87,7 +91,7 @@ class CategoryDomainTest extends TestCase
 
         $uuid = 'hash.value';
 
-        new CategoryDomain(
+        new Category(
             id: $uuid,
             name: "teste",
             description: "New desc",
@@ -99,7 +103,7 @@ class CategoryDomainTest extends TestCase
     {
         $this->expectException(EntityValidationException::class);
 
-        new CategoryDomain(
+        new Category(
             name: "t",
             description: "New desc",
             isActive: true
@@ -109,7 +113,7 @@ class CategoryDomainTest extends TestCase
     public function testExceptionDescriptionMinLength()
     {
         $this->expectException(EntityValidationException::class);
-        new CategoryDomain(
+        new Category(
             name: "teste",
             description: "1",
         );
@@ -118,7 +122,7 @@ class CategoryDomainTest extends TestCase
     public function testExceptionDescriptionMaxLength()
     {
         $this->expectException(EntityValidationException::class);
-        new CategoryDomain(
+        new Category(
             name: "teste",
             description: str_repeat("1", 300),
         );
