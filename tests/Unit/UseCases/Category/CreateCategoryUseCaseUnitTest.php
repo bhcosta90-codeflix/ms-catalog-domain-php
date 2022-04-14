@@ -55,4 +55,10 @@ final class CreateCategoryUseCaseUnitTest extends TestCase
 
         Mockery::close();
     }
+
+    protected function tearDown(): void
+    {
+        Mockery::close();
+        parent::tearDown();
+    }
 }
