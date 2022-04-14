@@ -6,6 +6,7 @@ use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
 use Costa\Core\UseCases\Category\CreateCategoryUseCase;
 use Costa\Core\UseCases\Category\DTO\Category\CategoryInput;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryOutput;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -36,9 +37,11 @@ final class CreateCategoryUseCaseUnitTest extends TestCase
         ]);
 
         $useCase = new CreateCategoryUseCase($this->mockRepo);
-        $useCase->execute($this->mockInput);
+        $responseUserCase = $useCase->execute($this->mockInput);
 
-        $this->assertTrue(true);
+        $this->assertInstanceOf(CategoryOutput::class, $responseUserCase);
+        $this->assertEquals($categoryName, $responseUserCase->name);
+        $this->assertEquals('', $responseUserCase->description);
 
         Mockery::close();
     }
