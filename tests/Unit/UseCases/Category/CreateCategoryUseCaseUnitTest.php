@@ -37,21 +37,21 @@ final class CreateCategoryUseCaseUnitTest extends TestCase
         ]);
 
         $useCase = new CreateCategoryUseCase($this->mockRepo);
-        $responseUserCase = $useCase->execute($this->mockInput);
+        $response = $useCase->execute($this->mockInput);
 
-        $this->assertInstanceOf(CategoryOutput::class, $responseUserCase);
-        $this->assertEquals($categoryName, $responseUserCase->name);
-        $this->assertEquals('', $responseUserCase->description);
+        $this->assertInstanceOf(CategoryOutput::class, $response);
+        $this->assertEquals($categoryName, $response->name);
+        $this->assertEquals('', $response->description);
 
         /**
          * Spies
          */
-        $this->spyRepo = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
-        $this->spyRepo->shouldReceive('insert')->andReturn($this->mockEntity);
+        $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
+        $this->spy->shouldReceive('insert')->andReturn($this->mockEntity);
 
-        $useCase = new CreateCategoryUseCase($this->spyRepo);
-        $responseUserCase = $useCase->execute($this->mockInput);
-        $this->spyRepo->shouldHaveReceived('insert');
+        $useCase = new CreateCategoryUseCase($this->spy);
+        $useCase->execute($this->mockInput);
+        $this->spy->shouldHaveReceived('insert');
 
         Mockery::close();
     }
