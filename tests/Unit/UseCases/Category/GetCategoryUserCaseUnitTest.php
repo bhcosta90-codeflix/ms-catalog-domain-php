@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use stdClass;
 
-final class ListCategoryUserCaseUnitTest extends TestCase
+final class GetCategoryUserCaseUnitTest extends TestCase
 {
     private Category $mockEntity;
     
