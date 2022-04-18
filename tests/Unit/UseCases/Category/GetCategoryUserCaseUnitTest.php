@@ -26,6 +26,7 @@ final class GetCategoryUserCaseUnitTest extends TestCase
             $categoryName
         ]);
         $this->mockEntity->shouldReceive('id')->andReturn($id);
+        $this->mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
 
         $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
         $this->mockRepo->shouldReceive('findById')->with($id)->andReturn($this->mockEntity);

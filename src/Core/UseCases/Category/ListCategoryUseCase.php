@@ -31,6 +31,7 @@ final class ListCategoryUseCase
         //             'description' => $data->description,
         //             'is_active' => $data->is_active,
         //             'is_active' => $data->is_active,
+        //             'created_at' => (string) $data->created_at,
         //         ];
         //     }, $repo->items()),
         //     total: $repo->total(),

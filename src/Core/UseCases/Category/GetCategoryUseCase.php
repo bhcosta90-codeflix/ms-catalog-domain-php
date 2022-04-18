@@ -20,7 +20,8 @@ final class GetCategoryUseCase
             id: $repo->id,
             name: $repo->name,
             description: $repo->description,
-            isActive: $repo->isActive
+            isActive: $repo->isActive,
+            createdAt: $repo->createdAt()
         );
     }
 }
