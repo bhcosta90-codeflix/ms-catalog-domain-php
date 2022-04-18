@@ -48,6 +48,7 @@ final class UpdateCategoryUserCaseUnitTest extends TestCase
 
         $useCase = new UpdateCategoryUseCase($this->spy);
         $useCase->execute($this->mockInput);
+        $this->spy->shouldHaveReceived('findById');
         $this->spy->shouldHaveReceived('update');
     }
 
