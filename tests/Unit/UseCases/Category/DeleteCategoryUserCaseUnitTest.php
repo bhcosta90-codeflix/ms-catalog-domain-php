@@ -50,6 +50,31 @@ final class DeleteCategoryUserCaseUnitTest extends TestCase
         $this->spy->shouldHaveReceived('delete');
     }
 
+    public function testDeleteFalse(){
+        $id = (string) Uuid::uuid4()->toString();
+        $categoryName = 'teste de categoria';
+
+        $this->mockEntity = Mockery::mock(Category::class, [
+            $id,
+            $categoryName
+        ]);
+        $this->mockEntity->shouldReceive('delete');
+
+        $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
+        $this->mockRepo->shouldReceive('findById')->andReturn($this->mockEntity);
+        $this->mockRepo->shouldReceive('delete')->andReturn(false);
+
+        $this->mockInput = Mockery::mock(Input::class, [
+            $id
+        ]);
+
+        $useCase = new DeleteCategoryUseCase($this->mockRepo);
+        $response = $useCase->execute($this->mockInput);
+
+        $this->assertInstanceOf(Output::class, $response);
+        $this->assertFalse($response->success);
+    }
+
     protected function tearDown(): void
     {
         Mockery::close();
