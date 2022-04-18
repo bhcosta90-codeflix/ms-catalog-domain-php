@@ -14,7 +14,7 @@ interface CategoryRepositoryInterface
         string|null $orderColumn = null,
         string|null $order = null,
         int $page = 1,
-        $totalPage = 15
+        int $totalPage = 15
     ): PaginationInterface;
     public function update(Entity $entity): Entity;
     public function delete(Entity $entity): bool;
