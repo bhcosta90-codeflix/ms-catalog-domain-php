@@ -5,14 +5,14 @@ namespace Tests\Unit\UseCase\Category;
 use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
 use Costa\Core\UseCases\Category\DeleteCategoryUseCase;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryDeleted\Input;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryFind\Input;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 final class DeleteCategoryUserCaseUnitTest extends TestCase
 {
-    public function testRename(){
+    public function testDelete(){
         $id = (string) Uuid::uuid4()->toString();
         $categoryName = 'teste de categoria';
 

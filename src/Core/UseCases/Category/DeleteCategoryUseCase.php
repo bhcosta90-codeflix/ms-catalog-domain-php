@@ -12,7 +12,7 @@ final class DeleteCategoryUseCase
         //
     }
 
-    public function execute(DTO\Category\CategoryDeleted\Input $obj): bool
+    public function execute(DTO\Category\CategoryFind\Input $obj): bool
     {
         $repo = $this->repository->findById($obj->id);
         return $this->repository->delete($repo);
