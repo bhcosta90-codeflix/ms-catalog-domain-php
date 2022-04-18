@@ -2,9 +2,7 @@
 
 namespace Costa\Core\UseCases\Category;
 
-use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryOutput;
 
 final class GetCategoryUseCase
 {
@@ -14,11 +12,11 @@ final class GetCategoryUseCase
         //
     }
 
-    public function execute(DTO\Category\CategoryDto $obj): DTO\Category\CategoryOutput
+    public function execute(DTO\Category\CategoryFind\Input $obj): DTO\Category\CategoryFind\Output
     {
         $repo = $this->repository->findById($obj->id);
 
-        return new DTO\Category\CategoryOutput(
+        return new DTO\Category\CategoryFind\Output(
             id: $repo->id,
             name: $repo->name,
             description: $repo->description,

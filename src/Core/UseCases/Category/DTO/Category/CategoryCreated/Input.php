@@ -1,8 +1,8 @@
 <?php
 
-namespace Costa\Core\UseCases\Category\DTO\Category;
+namespace Costa\Core\UseCases\Category\DTO\Category\CategoryCreated;
 
-class CategoryInput
+class Input
 {
     public function __construct(
         public string $name,

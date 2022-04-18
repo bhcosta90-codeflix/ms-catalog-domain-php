@@ -1,8 +1,8 @@
 <?php
 
-namespace Costa\Core\UseCases\Category\DTO\Category;
+namespace Costa\Core\UseCases\Category\DTO\Category\CategoryFind;
 
-class CategoryOutput extends CategoryInput
+class Output
 {
     public function __construct(
         public string $id,

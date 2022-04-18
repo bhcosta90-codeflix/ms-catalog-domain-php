@@ -1,8 +1,8 @@
 <?php
 
-namespace Costa\Core\UseCases\Category\DTO\Category;
+namespace Costa\Core\UseCases\Category\DTO\Category\CategoryList;
 
-class CategoryListOutput extends CategoryInput
+class Output
 {
     public function __construct(
         public array $items,

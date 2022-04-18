@@ -4,12 +4,11 @@ namespace Tests\Unit\UseCase\Category;
 
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Domains\Repositories\PaginationInterface;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryList;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryListOutput;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryList\Input;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryList\Output;
 use Costa\Core\UseCases\Category\ListCategoryUseCase;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Ramsey\Uuid\Uuid;
 use stdClass;
 
 final class ListCategoryUserCaseUnitTest extends TestCase
@@ -21,13 +20,13 @@ final class ListCategoryUserCaseUnitTest extends TestCase
 
         $useCase = new ListCategoryUseCase($this->mockRepo);
 
-        $this->mockInput = Mockery::mock(CategoryList::class, [
+        $this->mockInput = Mockery::mock(Input::class, [
             []
         ]);
 
         $response = $useCase->execute($this->mockInput);
         $this->assertCount(0, $response->items);
-        $this->assertInstanceOf(CategoryListOutput::class, $response);
+        $this->assertInstanceOf(Output::class, $response);
 
         /**
          * spies
@@ -59,14 +58,14 @@ final class ListCategoryUserCaseUnitTest extends TestCase
 
         $useCase = new ListCategoryUseCase($this->mockRepo);
 
-        $this->mockInput = Mockery::mock(CategoryList::class, [
+        $this->mockInput = Mockery::mock(Input::class, [
             []
         ]);
 
         $response = $useCase->execute($this->mockInput);
         $this->assertCount(1, $response->items);
         $this->assertInstanceOf(stdClass::class, $response->items[0]);
-        $this->assertInstanceOf(CategoryListOutput::class, $response);
+        $this->assertInstanceOf(Output::class, $response);
     }
 
     private function mockPagination($items = []){

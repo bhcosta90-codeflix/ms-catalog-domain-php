@@ -4,8 +4,8 @@ namespace Tests\Unit\UseCase\Category;
 
 use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryDto;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryOutput;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryFind\Input;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryFind\Output;
 use Costa\Core\UseCases\Category\UpdateCategoryUseCase;
 use Mockery;
 use PHPUnit\Framework\TestCase;
@@ -27,14 +27,14 @@ final class UpdateCategoryUserCaseUnitTest extends TestCase
         $this->mockRepo->shouldReceive('findById')->andReturn($this->mockEntity);
         $this->mockRepo->shouldReceive('update')->andReturn($this->mockEntity);
 
-        $this->mockInput = Mockery::mock(CategoryDto::class, [
+        $this->mockInput = Mockery::mock(Input::class, [
             $id
         ]);
 
         $useCase = new UpdateCategoryUseCase($this->mockRepo);
         $response = $useCase->execute($this->mockInput);
 
-        $this->assertInstanceOf(CategoryOutput::class, $response);
+        $this->assertInstanceOf(Output::class, $response);
         $this->assertEquals($categoryName, $response->name);
         $this->assertEquals($id, $response->id);
     }

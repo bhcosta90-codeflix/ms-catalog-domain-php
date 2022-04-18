@@ -4,9 +4,8 @@ namespace Tests\Unit\UseCase\Category;
 
 use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
-use Costa\Core\UseCases\Category\ListCategoryUseCase;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryDto;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryOutput;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryFind\Input;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryFind\Output;
 use Costa\Core\UseCases\Category\GetCategoryUseCase;
 use Mockery;
 use PHPUnit\Framework\TestCase;
@@ -31,14 +30,14 @@ final class GetCategoryUserCaseUnitTest extends TestCase
         $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
         $this->mockRepo->shouldReceive('findById')->with($id)->andReturn($this->mockEntity);
 
-        $this->mockInput = Mockery::mock(CategoryDto::class, [
+        $this->mockInput = Mockery::mock(Input::class, [
             $id
         ]);
 
         $useCase = new GetCategoryUseCase($this->mockRepo);
         $response = $useCase->execute($this->mockInput);
 
-        $this->assertInstanceOf(CategoryOutput::class, $response);
+        $this->assertInstanceOf(Output::class, $response);
         $this->assertEquals($categoryName, $response->name);
         $this->assertEquals($id, $response->id);
 
