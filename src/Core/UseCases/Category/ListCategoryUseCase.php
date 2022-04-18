@@ -10,20 +10,27 @@ final class ListCategoryUseCase
 {
     public function __construct(
         private CategoryRepositoryInterface $repository
-    )
-    {
+    ) {
         //
     }
 
-    public function execute(DTO\Category\CategoryDto $obj): DTO\Category\CategoryOutput
+    public function execute(DTO\Category\CategoryList $obj): DTO\Category\CategoryListOutput
     {
-        $repo = $this->repository->findById($obj->id);
+        $repo = $this->repository->paginate(
+            filters: $obj->filter,
+            page: $obj->page,
+            totalPage: $obj->totalPage
+        );
 
-        return new DTO\Category\CategoryOutput(
-            id: $repo->id(),
-            name: $repo->name,
-            description: $repo->description,
-            isActive: $repo->isActive,
+        return new DTO\Category\CategoryListOutput(
+            items: $repo->items(),
+            total: $repo->total(),
+            last_page: $repo->lastPage(),
+            first_page: $repo->firstPage(),
+            current_page: $repo->currentPage(),
+            per_page: $repo->perPage(),
+            to: $repo->to(),
+            from: $repo->from()
         );
     }
 }
