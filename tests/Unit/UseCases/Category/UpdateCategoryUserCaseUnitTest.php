@@ -38,6 +38,17 @@ final class UpdateCategoryUserCaseUnitTest extends TestCase
         $this->assertInstanceOf(Output::class, $response);
         $this->assertEquals($categoryName, $response->name);
         $this->assertEquals($id, $response->id);
+
+        /**
+         * Spies
+         */
+        $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
+        $this->spy->shouldReceive('findById')->andReturn($this->mockEntity);
+        $this->spy->shouldReceive('update')->andReturn($this->mockEntity);
+
+        $useCase = new UpdateCategoryUseCase($this->spy);
+        $useCase->execute($this->mockInput);
+        $this->spy->shouldHaveReceived('update');
     }
 
     protected function tearDown(): void
