@@ -28,6 +28,16 @@ final class ListCategoryUserCaseUnitTest extends TestCase
         $response = $useCase->execute($this->mockInput);
         $this->assertCount(0, $response->items);
         $this->assertInstanceOf(CategoryListOutput::class, $response);
+
+        /**
+         * spies
+         */
+        $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
+        $this->spy->shouldReceive('paginate')->andReturn($this->mockPagination());
+
+        $useCase = new ListCategoryUseCase($this->spy);
+        $useCase->execute($this->mockInput);
+        $this->spy->shouldHaveReceived('paginate');
     }
 
     private function mockPagination(){
