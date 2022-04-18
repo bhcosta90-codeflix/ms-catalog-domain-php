@@ -12,15 +12,22 @@ final class UpdateCategoryUseCase
         //
     }
 
-    public function execute(DTO\Category\CategoryFind\Input $obj): DTO\Category\CategoryFind\Output
+    public function execute(DTO\Category\CategoryUpdated\Input $obj): DTO\Category\CategoryUpdated\Output
     {
         $repo = $this->repository->findById($obj->id);
 
-        return new DTO\Category\CategoryFind\Output(
-            id: $repo->id,
-            name: $repo->name,
-            description: $repo->description,
-            isActive: $repo->isActive
+        $repo->update(
+            name: $obj->name,
+            description: $obj->description ?? $repo->description
+        );
+
+        $categoryUpdated = $this->repository->update($repo);
+
+        return new DTO\Category\CategoryUpdated\Output(
+            id: $categoryUpdated->id,
+            name: $categoryUpdated->name,
+            description: $categoryUpdated->description,
+            isActive: $categoryUpdated->isActive
         );
     }
 }
