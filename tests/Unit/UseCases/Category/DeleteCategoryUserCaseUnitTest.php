@@ -5,7 +5,8 @@ namespace Tests\Unit\UseCase\Category;
 use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
 use Costa\Core\UseCases\Category\DeleteCategoryUseCase;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryFind\Input;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryDeleted\Input;
+use Costa\Core\UseCases\Category\DTO\Category\CategoryDeleted\Output;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -33,7 +34,8 @@ final class DeleteCategoryUserCaseUnitTest extends TestCase
         $useCase = new DeleteCategoryUseCase($this->mockRepo);
         $response = $useCase->execute($this->mockInput);
 
-        $this->assertTrue($response);
+        $this->assertInstanceOf(Output::class, $response);
+        $this->assertTrue($response->success);
 
         /**
          * Spies
