@@ -4,8 +4,8 @@ namespace Tests\Unit\UseCase\Category;
 
 use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryFind\Input;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryFind\Output;
+use Costa\Core\UseCases\Category\DTO\Category\FindCategory\Input;
+use Costa\Core\UseCases\Category\DTO\Category\FindCategory\Output;
 use Costa\Core\UseCases\Category\GetCategoryUseCase;
 use Mockery;
 use PHPUnit\Framework\TestCase;

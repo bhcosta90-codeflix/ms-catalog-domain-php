@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\Category\DTO\Category\CategoryFind;
+namespace Costa\Core\UseCases\Category\DTO\Category\FindCategory;
 
 class Output
 {
