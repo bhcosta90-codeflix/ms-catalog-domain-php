@@ -7,7 +7,7 @@ class Input
     public function __construct(
         public string $id,
         public string $name,
-        public string $description = '',
+        public string|null $description = null,
         public bool $isActive = true,
     ) {
         //
