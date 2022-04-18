@@ -2,11 +2,9 @@
 
 namespace Costa\Core\UseCases\Category;
 
-use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryOutput;
 
-final class ListCategoryUseCase
+class ListCategoryUseCase
 {
     public function __construct(
         private CategoryRepositoryInterface $repository
