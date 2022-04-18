@@ -4,8 +4,8 @@ namespace Tests\Unit\UseCase\Category;
 
 use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryUpdated\Input;
-use Costa\Core\UseCases\Category\DTO\Category\CategoryUpdated\Output;
+use Costa\Core\UseCases\Category\DTO\Category\UpdatedCategory\Input;
+use Costa\Core\UseCases\Category\DTO\Category\UpdatedCategory\Output;
 use Costa\Core\UseCases\Category\UpdateCategoryUseCase;
 use Mockery;
 use PHPUnit\Framework\TestCase;

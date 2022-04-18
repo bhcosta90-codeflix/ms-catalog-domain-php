@@ -12,7 +12,7 @@ final class UpdateCategoryUseCase
         //
     }
 
-    public function execute(DTO\Category\CategoryUpdated\Input $obj): DTO\Category\CategoryUpdated\Output
+    public function execute(DTO\Category\UpdatedCategory\Input $obj): DTO\Category\UpdatedCategory\Output
     {
         $repo = $this->repository->findById($obj->id);
 
@@ -23,7 +23,7 @@ final class UpdateCategoryUseCase
 
         $categoryUpdated = $this->repository->update($repo);
 
-        return new DTO\Category\CategoryUpdated\Output(
+        return new DTO\Category\UpdatedCategory\Output(
             id: $categoryUpdated->id,
             name: $categoryUpdated->name,
             description: $categoryUpdated->description,
