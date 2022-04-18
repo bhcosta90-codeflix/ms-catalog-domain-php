@@ -7,6 +7,7 @@ use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
 use Costa\Core\UseCases\Category\ListCategoryUseCase;
 use Costa\Core\UseCases\Category\DTO\Category\CategoryDto;
 use Costa\Core\UseCases\Category\DTO\Category\CategoryOutput;
+use Costa\Core\UseCases\Category\GetCategoryUseCase;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -34,7 +35,7 @@ final class GetCategoryUserCaseUnitTest extends TestCase
             $id
         ]);
 
-        $useCase = new ListCategoryUseCase($this->mockRepo);
+        $useCase = new GetCategoryUseCase($this->mockRepo);
         $response = $useCase->execute($this->mockInput);
 
         $this->assertInstanceOf(CategoryOutput::class, $response);
@@ -47,7 +48,7 @@ final class GetCategoryUserCaseUnitTest extends TestCase
         $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
         $this->spy->shouldReceive('findById')->with($id)->andReturn($this->mockEntity);
 
-        $useCase = new ListCategoryUseCase($this->spy);
+        $useCase = new GetCategoryUseCase($this->spy);
         $useCase->execute($this->mockInput);
         $this->spy->shouldHaveReceived('findById');
 
