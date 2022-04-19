@@ -14,7 +14,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-final class CreateGenreUseCaseUnitTest extends TestCase
+class CreateGenreUseCaseUnitTest extends TestCase
 {
     private Entity $mockEntity;
     private Input $mockInput;

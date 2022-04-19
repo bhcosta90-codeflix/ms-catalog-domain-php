@@ -12,7 +12,7 @@ use Costa\Core\UseCases\Genre\DTO\Find\Output;
 use Mockery;
 use stdClass;
 
-final class GetGenreUseCaseUnitTest extends TestCase
+class GetGenreUseCaseUnitTest extends TestCase
 {
     private Entity $mockEntity;
     

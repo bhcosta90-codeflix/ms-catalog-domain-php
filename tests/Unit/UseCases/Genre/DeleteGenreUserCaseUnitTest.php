@@ -11,7 +11,7 @@ use Costa\Core\UseCases\Genre\DTO\Deleted\Output;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
-final class DeleteGenreUserCaseUnitTest extends TestCase
+class DeleteGenreUserCaseUnitTest extends TestCase
 {
     public function testDelete(){
         $id = Uuid::random();

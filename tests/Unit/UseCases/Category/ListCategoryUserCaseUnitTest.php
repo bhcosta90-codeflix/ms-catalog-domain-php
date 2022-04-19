@@ -11,7 +11,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-final class ListCategoryUserCaseUnitTest extends TestCase
+class ListCategoryUserCaseUnitTest extends TestCase
 {
     public function testListCategoryUseCaseEmpty()
     {

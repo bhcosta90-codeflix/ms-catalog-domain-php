@@ -11,7 +11,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
-final class UpdateCategoryUserCaseUnitTest extends TestCase
+class UpdateCategoryUserCaseUnitTest extends TestCase
 {
     public function testRename(){
         $id = (string) Uuid::uuid4()->toString();

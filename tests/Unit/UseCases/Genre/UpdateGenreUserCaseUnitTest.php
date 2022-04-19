@@ -12,7 +12,7 @@ use Costa\Core\UseCases\Genre\DTO\Updated\Output;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
-final class UpdateGenreUserCaseUnitTest extends TestCase
+class UpdateGenreUserCaseUnitTest extends TestCase
 {
     public function testRename(){
         $id = Uuid::random();

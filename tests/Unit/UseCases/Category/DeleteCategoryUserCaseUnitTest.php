@@ -11,7 +11,7 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
-final class DeleteCategoryUserCaseUnitTest extends TestCase
+class DeleteCategoryUserCaseUnitTest extends TestCase
 {
     public function testDelete(){
         $id = (string) Uuid::uuid4()->toString();

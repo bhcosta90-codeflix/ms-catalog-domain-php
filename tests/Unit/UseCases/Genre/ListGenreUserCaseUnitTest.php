@@ -12,7 +12,7 @@ use Costa\Core\UseCases\Genre\DTO\List\Output;
 use Mockery;
 use stdClass;
 
-final class ListGenreUserCaseUnitTest extends TestCase
+class ListGenreUserCaseUnitTest extends TestCase
 {
     public function testUseCaseEmpty()
     {
