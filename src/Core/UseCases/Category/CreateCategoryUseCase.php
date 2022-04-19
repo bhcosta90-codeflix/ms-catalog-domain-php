@@ -28,7 +28,8 @@ final class CreateCategoryUseCase
             name: $newRepository->name,
             description: $newRepository->description,
             isActive: $newRepository->isActive,
-            createdAt: $newRepository->createdAt()
+            createdAt: $newRepository->createdAt(),
+            updatedAt: $newRepository->updatedAt(),
         );
     }
 }

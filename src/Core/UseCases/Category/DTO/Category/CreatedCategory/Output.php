@@ -9,7 +9,8 @@ class Output
         public string $name,
         public string|null $description = null,
         public bool $isActive = true,
-        public string $createdAt = ''
+        public string $createdAt = '',
+        public string $updatedAt = '',
     ) {
         //
     }
