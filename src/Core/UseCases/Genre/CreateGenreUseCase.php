@@ -3,12 +3,16 @@
 namespace Costa\Core\UseCases\Genre;
 
 use Costa\Core\Domains\Entities\Genre;
+use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Domains\Repositories\GenreRepositoryInterface;
+use Costa\Core\UseCases\Contracts\TransactionContract;
 
 final class CreateGenreUseCase
 {
     public function __construct(
-        private GenreRepositoryInterface $repository
+        private GenreRepositoryInterface $repository,
+        private TransactionContract $transactionContract,
+        private CategoryRepositoryInterface $categoryRepositoryInterface,
     ) {
         //
     }
@@ -21,6 +25,7 @@ final class CreateGenreUseCase
         );
 
         $newRepository = $this->repository->insert($category);
+
         return new DTO\Created\Output(
             id: $newRepository->id(),
             name: $newRepository->name,
