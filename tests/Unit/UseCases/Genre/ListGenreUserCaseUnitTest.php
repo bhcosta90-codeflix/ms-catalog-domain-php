@@ -2,10 +2,11 @@
 
 namespace Tests\Unit\UseCase\Genre;
 
-use Costa\Core\Domains\Repositories\GenreRepositoryInterface;
+use Costa\Core\UseCases\Genre\ListGenreUseCase as UseCase;
+use Costa\Core\Domains\Repositories\GenreRepositoryInterface as RepositoryInterface;
+
 use Costa\Core\Domains\Repositories\PaginationInterface;
 use PHPUnit\Framework\TestCase;
-use Costa\Core\UseCases\Genre\ListGenreUseCase;
 use Costa\Core\UseCases\Genre\DTO\List\Input;
 use Costa\Core\UseCases\Genre\DTO\List\Output;
 use Mockery;
@@ -13,14 +14,14 @@ use stdClass;
 
 final class ListGenreUserCaseUnitTest extends TestCase
 {
-    public function testListGenreUseCaseEmpty()
+    public function testUseCaseEmpty()
     {
-        $mockRepository = Mockery::mock(stdClass::class, GenreRepositoryInterface::class);
+        $mockRepository = Mockery::mock(stdClass::class, RepositoryInterface::class);
         $mockRepository->shouldReceive('paginate')->andReturn($this->mockPagination());
 
         $mockInput = Mockery::mock(Input::class, []);
 
-        $useCase = new ListGenreUseCase($mockRepository);
+        $useCase = new UseCase($mockRepository);
         $response = $useCase->execute($mockInput);
 
         $this->assertInstanceOf(Output::class, $response);
@@ -29,28 +30,28 @@ final class ListGenreUserCaseUnitTest extends TestCase
         /**
          * spies
          */
-        $spy = Mockery::spy(stdClass::class, GenreRepositoryInterface::class);
+        $spy = Mockery::spy(stdClass::class, RepositoryInterface::class);
         $spy->shouldReceive('paginate')->andReturn($this->mockPagination());
 
-        $useCase = new ListGenreUseCase($spy);
+        $useCase = new UseCase($spy);
         $useCase->execute($mockInput);
         $spy->shouldHaveReceived('paginate');
 
         Mockery::close();
     }
 
-    public function testListGenreUseCase()
+    public function testUseCase()
     {
         $register = new stdClass();
         $register->id = '16156';
         $register->name = 'dopkaodpkpak';
 
-        $mockRepository = Mockery::mock(stdClass::class, GenreRepositoryInterface::class);
+        $mockRepository = Mockery::mock(stdClass::class, RepositoryInterface::class);
         $mockRepository->shouldReceive('paginate')->andReturn($this->mockPagination([$register]));
 
         $mockInput = Mockery::mock(Input::class, []);
 
-        $useCase = new ListGenreUseCase($mockRepository);
+        $useCase = new UseCase($mockRepository);
         $response = $useCase->execute($mockInput);
 
         $this->assertInstanceOf(Output::class, $response);
