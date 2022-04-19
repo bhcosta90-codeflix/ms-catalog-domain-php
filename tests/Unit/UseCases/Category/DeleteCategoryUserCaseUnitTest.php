@@ -17,22 +17,22 @@ class DeleteCategoryUserCaseUnitTest extends TestCase
         $id = (string) Uuid::uuid4()->toString();
         $categoryName = 'teste de categoria';
 
-        $this->mockEntity = Mockery::mock(Entity::class, [
+        $mockEntity = Mockery::mock(Entity::class, [
             $id,
             $categoryName
         ]);
-        $this->mockEntity->shouldReceive('delete');
+        $mockEntity->shouldReceive('delete');
 
-        $this->mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $this->mockRepo->shouldReceive('findById')->andReturn($this->mockEntity);
-        $this->mockRepo->shouldReceive('delete')->andReturn(true);
+        $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
+        $mockRepo->shouldReceive('findById')->andReturn($mockEntity);
+        $mockRepo->shouldReceive('delete')->andReturn(true);
 
-        $this->mockInput = Mockery::mock(Input::class, [
+        $mockInput = Mockery::mock(Input::class, [
             $id
         ]);
 
-        $useCase = new UseCase($this->mockRepo);
-        $response = $useCase->execute($this->mockInput);
+        $useCase = new UseCase($mockRepo);
+        $response = $useCase->execute($mockInput);
 
         $this->assertInstanceOf(Output::class, $response);
         $this->assertTrue($response->success);
@@ -40,36 +40,36 @@ class DeleteCategoryUserCaseUnitTest extends TestCase
         /**
          * Spies
          */
-        $this->spy = Mockery::spy(stdClass::class, RepositoryInterface::class);
-        $this->spy->shouldReceive('findById')->andReturn($this->mockEntity);
-        $this->spy->shouldReceive('delete')->andReturn(true);
+        $mockSpy = Mockery::spy(stdClass::class, RepositoryInterface::class);
+        $mockSpy->shouldReceive('findById')->andReturn($mockEntity);
+        $mockSpy->shouldReceive('delete')->andReturn(true);
 
-        $useCase = new UseCase($this->spy);
-        $useCase->execute($this->mockInput);
-        $this->spy->shouldHaveReceived('findById');
-        $this->spy->shouldHaveReceived('delete');
+        $useCase = new UseCase($mockSpy);
+        $useCase->execute($mockInput);
+        $mockSpy->shouldHaveReceived('findById');
+        $mockSpy->shouldHaveReceived('delete');
     }
 
     public function testDeleteFalse(){
         $id = (string) Uuid::uuid4()->toString();
         $categoryName = 'teste de categoria';
 
-        $this->mockEntity = Mockery::mock(Entity::class, [
+        $mockEntity = Mockery::mock(Entity::class, [
             $id,
             $categoryName
         ]);
-        $this->mockEntity->shouldReceive('delete');
+        $mockEntity->shouldReceive('delete');
 
-        $this->mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $this->mockRepo->shouldReceive('findById')->andReturn($this->mockEntity);
-        $this->mockRepo->shouldReceive('delete')->andReturn(false);
+        $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
+        $mockRepo->shouldReceive('findById')->andReturn($mockEntity);
+        $mockRepo->shouldReceive('delete')->andReturn(false);
 
-        $this->mockInput = Mockery::mock(Input::class, [
+        $mockInput = Mockery::mock(Input::class, [
             $id
         ]);
 
-        $useCase = new UseCase($this->mockRepo);
-        $response = $useCase->execute($this->mockInput);
+        $useCase = new UseCase($mockRepo);
+        $response = $useCase->execute($mockInput);
 
         $this->assertInstanceOf(Output::class, $response);
         $this->assertFalse($response->success);

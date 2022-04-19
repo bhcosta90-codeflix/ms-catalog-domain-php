@@ -21,23 +21,23 @@ class GetCategoryUserCaseUnitTest extends TestCase
         $id = (string) Uuid::uuid4()->toString();
         $categoryName = 'teste de categoria';
 
-        $this->mockEntity = Mockery::mock(Entity::class, [
+        $mockEntity = Mockery::mock(Entity::class, [
             $id,
             $categoryName
         ]);
-        $this->mockEntity->shouldReceive('id')->andReturn($id);
-        $this->mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
-        $this->mockEntity->shouldReceive('updatedAt')->andReturn(date('Y-m-d H:i:s'));
+        $mockEntity->shouldReceive('id')->andReturn($id);
+        $mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
+        $mockEntity->shouldReceive('updatedAt')->andReturn(date('Y-m-d H:i:s'));
 
-        $this->mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $this->mockRepo->shouldReceive('findById')->with($id)->andReturn($this->mockEntity);
+        $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
+        $mockRepo->shouldReceive('findById')->with($id)->andReturn($mockEntity);
 
-        $this->mockInput = Mockery::mock(Input::class, [
+        $mockInput = Mockery::mock(Input::class, [
             $id
         ]);
 
-        $useCase = new UseCase($this->mockRepo);
-        $response = $useCase->execute($this->mockInput);
+        $useCase = new UseCase($mockRepo);
+        $response = $useCase->execute($mockInput);
 
         $this->assertInstanceOf(Output::class, $response);
         $this->assertEquals($categoryName, $response->name);
@@ -46,12 +46,12 @@ class GetCategoryUserCaseUnitTest extends TestCase
         /**
          * spies
          */
-        $this->spy = Mockery::spy(stdClass::class, RepositoryInterface::class);
-        $this->spy->shouldReceive('findById')->with($id)->andReturn($this->mockEntity);
+        $mockSpy = Mockery::spy(stdClass::class, RepositoryInterface::class);
+        $mockSpy->shouldReceive('findById')->with($id)->andReturn($mockEntity);
 
-        $useCase = new UseCase($this->spy);
-        $useCase->execute($this->mockInput);
-        $this->spy->shouldHaveReceived('findById');
+        $useCase = new UseCase($mockSpy);
+        $useCase->execute($mockInput);
+        $mockSpy->shouldHaveReceived('findById');
 
     }
 

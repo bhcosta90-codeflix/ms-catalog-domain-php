@@ -14,31 +14,28 @@ use stdClass;
 
 class CreateCategoryUseCaseUnitTest extends TestCase
 {
-    private Entity $mockEntity;
-    private Input $mockInput;
-    private RepositoryInterface $mockRepo;
 
     public function testCreateNewCategory()
     {
         $uuid = (string) Uuid::uuid4()->toString();
         $categoryName = 'teste de categoria';
 
-        $this->mockEntity = Mockery::mock(Entity::class, [
+        $mockEntity = Mockery::mock(Entity::class, [
             $uuid,
             $categoryName
         ]);
-        $this->mockEntity->shouldReceive('id')->andReturn($uuid);
-        $this->mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
+        $mockEntity->shouldReceive('id')->andReturn($uuid);
+        $mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
 
-        $this->mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $this->mockRepo->shouldReceive('insert')->andReturn($this->mockEntity);
+        $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
+        $mockRepo->shouldReceive('insert')->andReturn($mockEntity);
 
-        $this->mockInput = Mockery::mock(Input::class, [
+        $mockInput = Mockery::mock(Input::class, [
             $categoryName
         ]);
 
-        $useCase = new UseCase($this->mockRepo);
-        $response = $useCase->execute($this->mockInput);
+        $useCase = new UseCase($mockRepo);
+        $response = $useCase->execute($mockInput);
 
         $this->assertInstanceOf(Output::class, $response);
         $this->assertEquals($categoryName, $response->name);
@@ -47,12 +44,12 @@ class CreateCategoryUseCaseUnitTest extends TestCase
         /**
          * Spies
          */
-        $this->spy = Mockery::spy(stdClass::class, RepositoryInterface::class);
-        $this->spy->shouldReceive('insert')->andReturn($this->mockEntity);
+        $mockSpy = Mockery::spy(stdClass::class, RepositoryInterface::class);
+        $mockSpy->shouldReceive('insert')->andReturn($mockEntity);
 
-        $useCase = new UseCase($this->spy);
-        $useCase->execute($this->mockInput);
-        $this->spy->shouldHaveReceived('insert');
+        $useCase = new UseCase($mockSpy);
+        $useCase->execute($mockInput);
+        $mockSpy->shouldHaveReceived('insert');
 
         Mockery::close();
     }

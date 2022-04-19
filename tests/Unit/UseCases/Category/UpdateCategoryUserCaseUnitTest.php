@@ -17,25 +17,25 @@ class UpdateCategoryUserCaseUnitTest extends TestCase
         $id = (string) Uuid::uuid4()->toString();
         $categoryName = 'teste de categoria';
 
-        $this->mockEntity = Mockery::mock(Entity::class, [
+        $mockEntity = Mockery::mock(Entity::class, [
             $id,
             $categoryName
         ]);
-        $this->mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
-        $this->mockEntity->shouldReceive('updatedAt')->andReturn(date('Y-m-d H:i:s'));
-        $this->mockEntity->shouldReceive('update')->shouldReceive('enable');
+        $mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
+        $mockEntity->shouldReceive('updatedAt')->andReturn(date('Y-m-d H:i:s'));
+        $mockEntity->shouldReceive('update')->shouldReceive('enable');
 
-        $this->mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $this->mockRepo->shouldReceive('findById')->andReturn($this->mockEntity);
-        $this->mockRepo->shouldReceive('update')->andReturn($this->mockEntity);
+        $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
+        $mockRepo->shouldReceive('findById')->andReturn($mockEntity);
+        $mockRepo->shouldReceive('update')->andReturn($mockEntity);
 
-        $this->mockInput = Mockery::mock(Input::class, [
+        $mockInput = Mockery::mock(Input::class, [
             $id,
             'tesadwada'
         ]);
 
-        $useCase = new UseCase($this->mockRepo);
-        $response = $useCase->execute($this->mockInput);
+        $useCase = new UseCase($mockRepo);
+        $response = $useCase->execute($mockInput);
 
         $this->assertInstanceOf(Output::class, $response);
         $this->assertEquals($categoryName, $response->name);
@@ -44,14 +44,14 @@ class UpdateCategoryUserCaseUnitTest extends TestCase
         /**
          * Spies
          */
-        $this->spy = Mockery::spy(stdClass::class, RepositoryInterface::class);
-        $this->spy->shouldReceive('findById')->andReturn($this->mockEntity);
-        $this->spy->shouldReceive('update')->andReturn($this->mockEntity);
+        $mockSpy = Mockery::spy(stdClass::class, RepositoryInterface::class);
+        $mockSpy->shouldReceive('findById')->andReturn($mockEntity);
+        $mockSpy->shouldReceive('update')->andReturn($mockEntity);
 
-        $useCase = new UseCase($this->spy);
-        $useCase->execute($this->mockInput);
-        $this->spy->shouldHaveReceived('findById');
-        $this->spy->shouldHaveReceived('update');
+        $useCase = new UseCase($mockSpy);
+        $useCase->execute($mockInput);
+        $mockSpy->shouldHaveReceived('findById');
+        $mockSpy->shouldHaveReceived('update');
     }
 
     protected function tearDown(): void
