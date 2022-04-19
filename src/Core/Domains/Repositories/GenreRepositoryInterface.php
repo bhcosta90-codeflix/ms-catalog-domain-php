@@ -10,9 +10,9 @@ interface GenreRepositoryInterface
     public function findById(string $id): Entity;
     public function findAll(array $filters = [], string|null $orderColumn = null, string|null $order = null): array;
     public function paginate(
-        array $filters = [],
-        string|null $orderColumn = null,
-        string|null $order = null,
+        ?array $filters = null,
+        ?string $orderColumn = null,
+        ?string $order = null,
         int $page = 1,
         int $totalPage = 15
     ): PaginationInterface;

@@ -13,7 +13,7 @@ use stdClass;
 
 final class ListCategoryUserCaseUnitTest extends TestCase
 {
-    public function testCategoryEmpty()
+    public function testListCategoryUseCaseEmpty()
     {
         $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
         $this->mockRepo->shouldReceive('paginate')->andReturn($this->mockPagination());
@@ -39,7 +39,7 @@ final class ListCategoryUserCaseUnitTest extends TestCase
         $this->spy->shouldHaveReceived('paginate');
     }
 
-    public function testCategories()
+    public function testListCategoryUseCase()
     {
         $register = new stdClass();
         $register->id = '16156';
@@ -48,13 +48,9 @@ final class ListCategoryUserCaseUnitTest extends TestCase
         $register->is_active = true;
         $register->created_at = 'created_at';
         $register->updated_id = 'updated_id';
-
-        $mockPagination = $this->mockPagination([
-            $register
-        ]);
-
+        
         $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
-        $this->mockRepo->shouldReceive('paginate')->andReturn($mockPagination);
+        $this->mockRepo->shouldReceive('paginate')->andReturn($this->mockPagination([$register]));
 
         $useCase = new ListCategoryUseCase($this->mockRepo);
 
@@ -64,7 +60,6 @@ final class ListCategoryUserCaseUnitTest extends TestCase
 
         $response = $useCase->execute($this->mockInput);
         $this->assertCount(1, $response->items);
-        $this->assertInstanceOf(stdClass::class, $response->items[0]);
         $this->assertInstanceOf(Output::class, $response);
     }
 
