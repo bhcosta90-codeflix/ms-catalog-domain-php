@@ -12,11 +12,11 @@ final class GetGenreUseCase
         //
     }
 
-    public function execute(DTO\FindGenre\Input $input): DTO\FindGenre\Output
+    public function execute(DTO\Find\Input $input): DTO\Find\Output
     {
         $repo = $this->repository->findById($input->id);
 
-        return new DTO\FindGenre\Output(
+        return new DTO\Find\Output(
             id: $repo->id,
             name: $repo->name,
             isActive: $repo->isActive,

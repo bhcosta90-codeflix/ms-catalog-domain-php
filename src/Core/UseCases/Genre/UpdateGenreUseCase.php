@@ -12,7 +12,7 @@ final class UpdateGenreUseCase
         //
     }
 
-    public function execute(DTO\UpdatedGenre\Input $input): DTO\UpdatedGenre\Output
+    public function execute(DTO\Updated\Input $input): DTO\Updated\Output
     {
         $repo = $this->repository->findById($input->id);
 
@@ -24,7 +24,7 @@ final class UpdateGenreUseCase
 
         $categoryUpdated = $this->repository->update($repo);
 
-        return new DTO\UpdatedGenre\Output(
+        return new DTO\Updated\Output(
             id: $categoryUpdated->id,
             name: $categoryUpdated->name,
             isActive: $categoryUpdated->isActive,

@@ -6,8 +6,8 @@ use Costa\Core\Domains\Repositories\GenreRepositoryInterface;
 use Costa\Core\Domains\Repositories\PaginationInterface;
 use PHPUnit\Framework\TestCase;
 use Costa\Core\UseCases\Genre\ListGenreUseCase;
-use Costa\Core\UseCases\Genre\DTO\ListGenre\Input;
-use Costa\Core\UseCases\Genre\DTO\ListGenre\Output;
+use Costa\Core\UseCases\Genre\DTO\List\Input;
+use Costa\Core\UseCases\Genre\DTO\List\Output;
 use Mockery;
 use stdClass;
 

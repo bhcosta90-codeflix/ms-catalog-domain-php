@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\Genre\DTO\FindGenre;
+namespace Costa\Core\UseCases\Genre\DTO\Find;
 
 class Output
 {

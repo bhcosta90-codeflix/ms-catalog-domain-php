@@ -12,7 +12,7 @@ class ListGenreUseCase
         //
     }
 
-    public function execute(DTO\ListGenre\Input $input): DTO\ListGenre\Output
+    public function execute(DTO\List\Input $input): DTO\List\Output
     {
         $repo = $this->repository->paginate(
             filters: $input->filter,
@@ -20,7 +20,7 @@ class ListGenreUseCase
             totalPage: $input->totalPage,
         );
 
-        return new DTO\ListGenre\Output(
+        return new DTO\List\Output(
             items: $repo->items(),
             total: $repo->total(),
             last_page: $repo->lastPage(),
