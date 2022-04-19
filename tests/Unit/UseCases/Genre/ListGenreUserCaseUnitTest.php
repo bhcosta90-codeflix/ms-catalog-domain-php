@@ -36,8 +36,6 @@ class ListGenreUserCaseUnitTest extends TestCase
         $useCase = new UseCase($spy);
         $useCase->execute($mockInput);
         $spy->shouldHaveReceived('paginate');
-
-        Mockery::close();
     }
 
     public function testUseCase()
@@ -56,8 +54,6 @@ class ListGenreUserCaseUnitTest extends TestCase
 
         $this->assertInstanceOf(Output::class, $response);
         $this->assertCount(1, $response->items);
-
-        Mockery::close();
     }
 
     private function mockPagination($items = []){
@@ -72,5 +68,11 @@ class ListGenreUserCaseUnitTest extends TestCase
         $mock->shouldReceive('from')->andReturn(0);
 
         return $mock;
+    }
+
+    protected function tearDown(): void
+    {
+        Mockery::close();
+        parent::tearDown();
     }
 }

@@ -51,8 +51,19 @@ final class CreateGenreUseCase
     {
         $categoriesDb = $this->categoryRepositoryInterface->getIds($ids);
 
-        if (count($ids) !== count($categoriesDb)) {
-            throw new NotFoundDomainException("Total category this different");
+        // if (count($ids) !== count($categoriesDb)) {
+        //     throw new NotFoundDomainException("Total category this different");
+        // }
+
+        $arrayDiff = array_diff($categoriesDb, $ids);
+
+        if (count($arrayDiff)) {
+            $msg = sprintf(
+                '%s %s not found',
+                count($arrayDiff) > 1 ? 'Categories' : 'Category',
+                implode(', ', $arrayDiff)
+            );
+            throw new NotFoundDomainException($msg);
         }
     }
 }

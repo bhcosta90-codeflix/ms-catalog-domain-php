@@ -14,8 +14,7 @@ use stdClass;
 
 class GetCategoryUserCaseUnitTest extends TestCase
 {
-    private Entity $mockEntity;
-    
+   
     public function testGetById()
     {
         $id = (string) Uuid::uuid4()->toString();

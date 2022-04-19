@@ -50,8 +50,6 @@ class CreateCategoryUseCaseUnitTest extends TestCase
         $useCase = new UseCase($mockSpy);
         $useCase->execute($mockInput);
         $mockSpy->shouldHaveReceived('insert');
-
-        Mockery::close();
     }
 
     protected function tearDown(): void
