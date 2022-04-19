@@ -15,7 +15,8 @@ class Genre
         protected string $name,
         protected ?Uuid $id = null,
         protected bool $isActive = true,
-        protected ?DateTime $createdAt = null
+        protected ?DateTime $createdAt = null,
+        protected array $categories = [],
     ) {
         $this->id = $this->id ?? Uuid::random();
         $this->createdAt = $this->createdAt ?? new DateTime();
@@ -39,6 +40,16 @@ class Genre
     ) {
         $this->name = $name;
         $this->validated();
+    }
+
+    public function addCategory(string $category)
+    {
+        array_push($this->categories, $category);
+    }
+
+    public function removeCategory(string $category)
+    {
+        unset($this->categories[array_search($category, $this->categories)]);
     }
 
     protected function validated()

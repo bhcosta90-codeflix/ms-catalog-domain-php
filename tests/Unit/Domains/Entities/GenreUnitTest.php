@@ -136,4 +136,40 @@ class GenreUnitTest extends TestCase
             name: str_repeat('y', 256),
         );
     }
+
+    public function testAddCategoryToGenre()
+    {
+        $idCategory = UuidUuid::uuid4();
+
+        $genre = new Genre(
+            name: "teste",
+        );
+
+        $this->assertIsArray($genre->categories);
+        $this->assertCount(0, $genre->categories);
+        $genre->addCategory(category: $idCategory);
+        $genre->addCategory(category: $idCategory);
+        $this->assertCount(2, $genre->categories);
+    }
+
+    public function testRemoveCategoryToGenre()
+    {
+        $idCategory = UuidUuid::uuid4();
+        $idCategory2 = UuidUuid::uuid4();
+
+        $genre = new Genre(
+            name: "teste",
+            categories: [
+                $idCategory,
+                $idCategory2
+            ]
+        );
+
+        $this->assertCount(2, $genre->categories);
+        $genre->removeCategory(category: $idCategory);
+        $this->assertCount(1, $genre->categories);
+        
+        $this->assertEquals($idCategory2, $genre->categories[1]);
+        
+    }
 }
