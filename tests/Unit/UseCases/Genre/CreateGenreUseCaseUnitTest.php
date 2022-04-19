@@ -21,21 +21,16 @@ class CreateGenreUseCaseUnitTest extends TestCase
     {
         $idCategory = Uuid::random();
 
-        $categoryName = 'teste de categoria';
-
         $mockRepo = $this->mockRepository();
-
         $mockInput = $this->mockInput([$idCategory]);
-
         $mockTransaction = $this->mockTransaction();
-
         $mockCategoryRepository = $this->mockCategory([$idCategory]);
 
         $useCase = new UseCase($mockRepo, $mockTransaction, $mockCategoryRepository);
         $response = $useCase->execute($mockInput);
 
         $this->assertInstanceOf(Output::class, $response);
-        $this->assertEquals($categoryName, $response->name);
+        $this->assertEquals("teste de categoria", $response->name);
 
         /**
          * Spies
@@ -55,10 +50,8 @@ class CreateGenreUseCaseUnitTest extends TestCase
         $idCategory = Uuid::random();
 
         $mockRepo = $this->mockRepository();
-
         $mockTransaction = $this->mockTransaction();
-
-        $mockCategoryRepository = $this->mockCategory([$idCategory, 'fake-id']);
+        $mockCategoryRepository = $this->mockCategory([$idCategory]);
 
         $useCase = new UseCase($mockRepo, $mockTransaction, $mockCategoryRepository);
         $useCase->execute($this->mockInput());
