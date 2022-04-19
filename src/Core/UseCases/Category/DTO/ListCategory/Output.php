@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\Category\DTO\Category\ListCategory;
+namespace Costa\Core\UseCases\Category\DTO\ListCategory;
 
 class Output
 {

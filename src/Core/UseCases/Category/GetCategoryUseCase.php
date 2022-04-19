@@ -12,11 +12,11 @@ final class GetCategoryUseCase
         //
     }
 
-    public function execute(DTO\Category\FindCategory\Input $input): DTO\Category\FindCategory\Output
+    public function execute(DTO\FindCategory\Input $input): DTO\FindCategory\Output
     {
         $repo = $this->repository->findById($input->id);
 
-        return new DTO\Category\FindCategory\Output(
+        return new DTO\FindCategory\Output(
             id: $repo->id,
             name: $repo->name,
             description: $repo->description,

@@ -14,7 +14,7 @@ final class CreateCategoryUseCase
         //
     }
 
-    public function execute(DTO\Category\CreatedCategory\Input $input): DTO\Category\CreatedCategory\Output
+    public function execute(DTO\CreatedCategory\Input $input): DTO\CreatedCategory\Output
     {
         $category = new Category(
             name: $input->name,
@@ -23,7 +23,7 @@ final class CreateCategoryUseCase
         );
 
         $newRepository = $this->repository->insert($category);
-        return new DTO\Category\CreatedCategory\Output(
+        return new DTO\CreatedCategory\Output(
             id: $newRepository->id(),
             name: $newRepository->name,
             description: $newRepository->description,

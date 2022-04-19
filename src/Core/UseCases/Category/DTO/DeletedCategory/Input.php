@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\Category\DTO\Category\FindCategory;
+namespace Costa\Core\UseCases\Category\DTO\DeletedCategory;
 
 class Input
 {

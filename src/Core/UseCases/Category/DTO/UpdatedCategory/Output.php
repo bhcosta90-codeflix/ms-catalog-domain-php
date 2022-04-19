@@ -1,13 +1,13 @@
 <?php
 
-namespace Costa\Core\UseCases\Category\DTO\Category\CreatedCategory;
+namespace Costa\Core\UseCases\Category\DTO\UpdatedCategory;
 
 class Output
 {
     public function __construct(
         public string $id,
         public string $name,
-        public string|null $description = null,
+        public string $description = '',
         public bool $isActive = true,
         public string $createdAt = '',
         public string $updatedAt = '',
