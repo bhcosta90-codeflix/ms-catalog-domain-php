@@ -1,13 +1,12 @@
 <?php
 
-namespace Costa\Core\UseCases\Category\DTO\FindCategory;
+namespace Costa\Core\UseCases\Genre\DTO\FindGenre;
 
 class Output
 {
     public function __construct(
         public string $id,
         public string $name,
-        public string $description = '',
         public bool $isActive = true,
         public string $createdAt = '',
         public string $updatedAt = '',
