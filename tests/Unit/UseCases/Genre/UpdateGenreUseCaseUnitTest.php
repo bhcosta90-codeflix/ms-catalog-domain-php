@@ -45,7 +45,7 @@ class UpdateGenreUseCaseUnitTest extends TestCase
         $mockSpy->shouldHaveReceived('update');
     }
 
-    public function UpdateGenreCategoryNotFound()
+    public function testUpdateGenreCategoryNotFound()
     {
         $this->expectException(NotFoundDomainException::class);
 

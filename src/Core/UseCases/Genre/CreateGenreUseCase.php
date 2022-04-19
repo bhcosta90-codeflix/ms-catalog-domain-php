@@ -21,13 +21,13 @@ final class CreateGenreUseCase
 
     public function execute(DTO\Created\Input $input): DTO\Created\Output
     {
-        $objGenre = new Genre(
-            name: $input->name,
-            isActive: $input->isActive,
-            categories: $input->categories
-        );
-
         try {
+            $objGenre = new Genre(
+                name: $input->name,
+                isActive: $input->isActive,
+                categories: $input->categories
+            );
+
             $genre = $this->repository->insert($objGenre);
 
             $this->validateCategories($input->categories);
