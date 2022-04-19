@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\Category\DTO\DeletedCategory;
+namespace Costa\Core\UseCases\Category\DTO\Deleted;
 
 class Output
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\Category\DTO\FindCategory;
+namespace Costa\Core\UseCases\Category\DTO\Updated;
 
 class Output
 {

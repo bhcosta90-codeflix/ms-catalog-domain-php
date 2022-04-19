@@ -12,12 +12,12 @@ final class DeleteCategoryUseCase
         //
     }
 
-    public function execute(DTO\DeletedCategory\Input $input): DTO\DeletedCategory\Output
+    public function execute(DTO\Deleted\Input $input): DTO\Deleted\Output
     {
         $repo = $this->repository->findById($input->id);
         $ret = $this->repository->delete($repo);
 
-        return new DTO\DeletedCategory\Output(
+        return new DTO\Deleted\Output(
             success: $ret
         );
     }

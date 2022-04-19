@@ -12,7 +12,7 @@ class ListCategoryUseCase
         //
     }
 
-    public function execute(DTO\ListCategory\Input $input): DTO\ListCategory\Output
+    public function execute(DTO\List\Input $input): DTO\List\Output
     {
         $repo = $this->repository->paginate(
             filters: $input->filter,
@@ -21,7 +21,7 @@ class ListCategoryUseCase
         );
 
 
-        // return new DTO\ListCategory\Output(
+        // return new DTO\List\Output(
         //     items: array_map(function($data){
         //         return [
         //             'id' => $data->id,
@@ -41,7 +41,7 @@ class ListCategoryUseCase
         //     from: $repo->from()
         // );
 
-        return new DTO\ListCategory\Output(
+        return new DTO\List\Output(
             items: $repo->items(),
             total: $repo->total(),
             last_page: $repo->lastPage(),
