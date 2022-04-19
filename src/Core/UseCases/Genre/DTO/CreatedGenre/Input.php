@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\Genre\DTO\CreatedCategory;
+namespace Costa\Core\UseCases\Genre\DTO\CreatedGenre;
 
 class Input
 {
