@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\UseCase\Category;
 
-use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
+use Costa\Core\Domains\Repositories\CategoryRepositoryInterface as RepositoryInterface;
+use Costa\Core\UseCases\Category\ListCategoryUseCase as UseCase;
 use Costa\Core\Domains\Repositories\PaginationInterface;
 use Costa\Core\UseCases\Category\DTO\List\Input;
 use Costa\Core\UseCases\Category\DTO\List\Output;
-use Costa\Core\UseCases\Category\ListCategoryUseCase;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -15,10 +15,10 @@ final class ListCategoryUserCaseUnitTest extends TestCase
 {
     public function testListCategoryUseCaseEmpty()
     {
-        $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
+        $this->mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
         $this->mockRepo->shouldReceive('paginate')->andReturn($this->mockPagination());
 
-        $useCase = new ListCategoryUseCase($this->mockRepo);
+        $useCase = new UseCase($this->mockRepo);
 
         $this->mockInput = Mockery::mock(Input::class, [
             []
@@ -31,10 +31,10 @@ final class ListCategoryUserCaseUnitTest extends TestCase
         /**
          * spies
          */
-        $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
+        $this->spy = Mockery::spy(stdClass::class, RepositoryInterface::class);
         $this->spy->shouldReceive('paginate')->andReturn($this->mockPagination());
 
-        $useCase = new ListCategoryUseCase($this->spy);
+        $useCase = new UseCase($this->spy);
         $useCase->execute($this->mockInput);
         $this->spy->shouldHaveReceived('paginate');
     }
@@ -49,10 +49,10 @@ final class ListCategoryUserCaseUnitTest extends TestCase
         $register->created_at = 'created_at';
         $register->updated_id = 'updated_id';
         
-        $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
+        $this->mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
         $this->mockRepo->shouldReceive('paginate')->andReturn($this->mockPagination([$register]));
 
-        $useCase = new ListCategoryUseCase($this->mockRepo);
+        $useCase = new UseCase($this->mockRepo);
 
         $this->mockInput = Mockery::mock(Input::class, [
             []

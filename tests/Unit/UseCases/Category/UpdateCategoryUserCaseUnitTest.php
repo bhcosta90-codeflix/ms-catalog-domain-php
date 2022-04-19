@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\UseCase\Category;
 
-use Costa\Core\Domains\Entities\Category;
-use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
+use Costa\Core\Domains\Entities\Category as Entity;
+use Costa\Core\Domains\Repositories\CategoryRepositoryInterface as RepositoryInterface;
 use Costa\Core\UseCases\Category\DTO\Updated\Input;
 use Costa\Core\UseCases\Category\DTO\Updated\Output;
-use Costa\Core\UseCases\Category\UpdateCategoryUseCase;
+use Costa\Core\UseCases\Category\UpdateCategoryUseCase as UseCase;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -17,7 +17,7 @@ final class UpdateCategoryUserCaseUnitTest extends TestCase
         $id = (string) Uuid::uuid4()->toString();
         $categoryName = 'teste de categoria';
 
-        $this->mockEntity = Mockery::mock(Category::class, [
+        $this->mockEntity = Mockery::mock(Entity::class, [
             $id,
             $categoryName
         ]);
@@ -25,7 +25,7 @@ final class UpdateCategoryUserCaseUnitTest extends TestCase
         $this->mockEntity->shouldReceive('updatedAt')->andReturn(date('Y-m-d H:i:s'));
         $this->mockEntity->shouldReceive('update')->shouldReceive('enable');
 
-        $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
+        $this->mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
         $this->mockRepo->shouldReceive('findById')->andReturn($this->mockEntity);
         $this->mockRepo->shouldReceive('update')->andReturn($this->mockEntity);
 
@@ -34,7 +34,7 @@ final class UpdateCategoryUserCaseUnitTest extends TestCase
             'tesadwada'
         ]);
 
-        $useCase = new UpdateCategoryUseCase($this->mockRepo);
+        $useCase = new UseCase($this->mockRepo);
         $response = $useCase->execute($this->mockInput);
 
         $this->assertInstanceOf(Output::class, $response);
@@ -44,11 +44,11 @@ final class UpdateCategoryUserCaseUnitTest extends TestCase
         /**
          * Spies
          */
-        $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
+        $this->spy = Mockery::spy(stdClass::class, RepositoryInterface::class);
         $this->spy->shouldReceive('findById')->andReturn($this->mockEntity);
         $this->spy->shouldReceive('update')->andReturn($this->mockEntity);
 
-        $useCase = new UpdateCategoryUseCase($this->spy);
+        $useCase = new UseCase($this->spy);
         $useCase->execute($this->mockInput);
         $this->spy->shouldHaveReceived('findById');
         $this->spy->shouldHaveReceived('update');
