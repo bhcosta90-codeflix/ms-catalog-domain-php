@@ -21,6 +21,7 @@ final class UpdateCategoryUserCaseUnitTest extends TestCase
             $id,
             $categoryName
         ]);
+        $this->mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
         $this->mockEntity->shouldReceive('update');
 
         $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
