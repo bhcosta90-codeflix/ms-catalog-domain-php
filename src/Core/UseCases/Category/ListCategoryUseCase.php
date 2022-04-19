@@ -12,12 +12,12 @@ class ListCategoryUseCase
         //
     }
 
-    public function execute(DTO\Category\ListCategory\Input $obj): DTO\Category\ListCategory\Output
+    public function execute(DTO\Category\ListCategory\Input $input): DTO\Category\ListCategory\Output
     {
         $repo = $this->repository->paginate(
-            filters: $obj->filter,
-            page: $obj->page,
-            totalPage: $obj->totalPage,
+            filters: $input->filter,
+            page: $input->page,
+            totalPage: $input->totalPage,
         );
 
 

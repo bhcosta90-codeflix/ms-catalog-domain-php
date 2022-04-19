@@ -14,12 +14,12 @@ final class CreateCategoryUseCase
         //
     }
 
-    public function execute(DTO\Category\CreatedCategory\Input $repo): DTO\Category\CreatedCategory\Output
+    public function execute(DTO\Category\CreatedCategory\Input $input): DTO\Category\CreatedCategory\Output
     {
         $category = new Category(
-            name: $repo->name,
-            description: $repo->description,
-            isActive: $repo->isActive,
+            name: $input->name,
+            description: $input->description,
+            isActive: $input->isActive,
         );
 
         $newRepository = $this->repository->insert($category);
