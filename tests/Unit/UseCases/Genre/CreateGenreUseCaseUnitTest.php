@@ -54,7 +54,7 @@ class CreateGenreUseCaseUnitTest extends TestCase
         $mockCategoryRepository = $this->mockCategory([$idCategory]);
 
         $useCase = new UseCase($mockRepo, $mockTransaction, $mockCategoryRepository);
-        $useCase->execute($this->mockInput());
+        $useCase->execute($this->mockInput([$idCategory, 'fake-value']));
     }
 
     private function mockEntity()

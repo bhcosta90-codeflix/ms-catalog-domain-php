@@ -55,7 +55,7 @@ final class CreateGenreUseCase
         //     throw new NotFoundDomainException("Total category this different");
         // }
 
-        $arrayDiff = array_diff($categoriesDb, $ids);
+        $arrayDiff = array_diff($categoriesDb, $ids) ?: array_diff($ids, $categoriesDb);
 
         if (count($arrayDiff)) {
             $msg = sprintf(
