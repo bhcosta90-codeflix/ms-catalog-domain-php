@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domains;
+namespace Tests\Unit\Domains\Entities;
 
 use Costa\Core\Domains\Entities\Category;
 use Costa\Core\Domains\Exceptions\EntityValidationException;
@@ -74,12 +74,12 @@ class CategoryUnitTest extends TestCase
         $this->assertEquals('new_desc', $category->description);
 
         $category->update(
-            name: "new_name",
+            name: "new_name 2",
             description: null
         );
 
         $this->assertEquals($uuid, $category->id);
-        $this->assertEquals('new_name', $category->name);
+        $this->assertEquals('new_name 2', $category->name);
         $this->assertEquals('2022-01-01 00:00:00', $category->createdAt());
         $this->assertNull($category->description);
     }

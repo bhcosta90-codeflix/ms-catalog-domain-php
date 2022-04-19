@@ -7,19 +7,18 @@ use Costa\Core\Domains\Validations\DomainValidation;
 use Costa\Core\Domains\ValueObject\Uuid;
 use DateTime;
 
-class Category
+class Genre
 {
     use MagicMethodsTrait;
 
     public function __construct(
-        protected Uuid|string $id = "",
-        protected string $name = "",
-        protected string|null $description = "",
+        protected string $name,
+        protected ?Uuid $id = null,
         protected bool $isActive = true,
-        protected DateTime|string $createdAt = ''
+        protected ?DateTime $createdAt = null
     ) {
-        $this->id = $this->id ? new Uuid($this->id) : Uuid::random();
-        $this->createdAt = $this->createdAt ? new DateTime($this->createdAt) : new DateTime();
+        $this->id = $this->id ?? Uuid::random();
+        $this->createdAt = $this->createdAt ?? new DateTime();
         $this->validated();
     }
 
@@ -36,11 +35,9 @@ class Category
     }
 
     public function update(
-        string $name,
-        string|null $description
+        string $name
     ) {
         $this->name = $name;
-        $this->description = $description;
         $this->validated();
     }
 
@@ -48,7 +45,5 @@ class Category
     {
         DomainValidation::strMaxLength($this->name);
         DomainValidation::strMinLength($this->name, 2);
-        DomainValidation::strCanNullAndMinLength($this->description);
-        DomainValidation::strCanNullAndMaxLength($this->description);
     }
 }
