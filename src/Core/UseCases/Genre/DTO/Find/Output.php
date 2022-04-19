@@ -8,8 +8,8 @@ class Output
         public string $id,
         public string $name,
         public bool $isActive = true,
-        public string $createdAt = '',
-        public string $updatedAt = '',
+        public string $created_at = '',
+        public string $updated_at = '',
     ) {
         //
     }

@@ -20,8 +20,8 @@ final class GetGenreUseCase
             id: $repo->id,
             name: $repo->name,
             isActive: $repo->isActive,
-            createdAt: $repo->createdAt(),
-            updatedAt: $repo->updatedAt(),
+            created_at: $repo->createdAt(),
+            updated_at: $repo->updatedAt(),
         );
     }
 }
