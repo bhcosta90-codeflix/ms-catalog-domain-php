@@ -26,9 +26,9 @@ final class CreateCategoryUseCase
             id: $newRepository->id(),
             name: $newRepository->name,
             description: $newRepository->description,
-            isActive: $newRepository->isActive,
-            createdAt: $newRepository->createdAt(),
-            updatedAt: $newRepository->createdAt(),
+            is_active: $newRepository->isActive,
+            created_at: $newRepository->createdAt(),
+            updated_at: $newRepository->createdAt(),
         );
     }
 }

@@ -28,8 +28,8 @@ final class UpdateGenreUseCase
             id: $categoryUpdated->id,
             name: $categoryUpdated->name,
             isActive: $categoryUpdated->isActive,
-            createdAt: $categoryUpdated->createdAt(),
-            updatedAt: $categoryUpdated->updatedAt(),
+            created_at: $categoryUpdated->createdAt(),
+            updated_at: $categoryUpdated->updatedAt(),
         );
     }
 }

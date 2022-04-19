@@ -29,9 +29,9 @@ final class UpdateCategoryUseCase
             id: $categoryUpdated->id,
             name: $categoryUpdated->name,
             description: $categoryUpdated->description,
-            isActive: $categoryUpdated->isActive,
-            createdAt: $categoryUpdated->createdAt(),
-            updatedAt: $categoryUpdated->updatedAt(),
+            is_active: $categoryUpdated->isActive,
+            created_at: $categoryUpdated->createdAt(),
+            updated_at: $categoryUpdated->updatedAt(),
         );
     }
 }

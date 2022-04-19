@@ -22,16 +22,17 @@ final class CreateGenreUseCase
         $category = new Genre(
             name: $input->name,
             isActive: $input->isActive,
+            categories: $input->categories
         );
 
-        $newRepository = $this->repository->insert($category);
+        $genre = $this->repository->insert($category);
 
         return new DTO\Created\Output(
-            id: $newRepository->id(),
-            name: $newRepository->name,
-            isActive: $newRepository->isActive,
-            createdAt: $newRepository->createdAt(),
-            updatedAt: $newRepository->createdAt(),
+            id: $genre->id(),
+            name: $genre->name,
+            isActive: $genre->isActive,
+            created_at: $genre->createdAt(),
+            updated_at: $genre->createdAt(),
         );
     }
 }
