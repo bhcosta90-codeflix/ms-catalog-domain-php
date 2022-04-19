@@ -10,6 +10,7 @@ class Output
         public string $description = '',
         public bool $isActive = true,
         public string $createdAt = '',
+        public string $updatedAt = '',
     ) {
         //
     }
