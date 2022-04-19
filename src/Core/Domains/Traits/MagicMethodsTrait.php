@@ -28,6 +28,6 @@ trait MagicMethodsTrait
     
     public function updatedAt($format = 'Y-m-d H:i:s'): string
     {
-        return $this->updateAt->format($format);
+        return $this->updatedAt->format($format);
     }
 }
