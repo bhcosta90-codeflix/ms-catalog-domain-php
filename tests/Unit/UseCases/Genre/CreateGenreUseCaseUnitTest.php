@@ -41,7 +41,11 @@ class CreateGenreUseCaseUnitTest extends TestCase
         ]);
 
         $mockTransaction = Mockery::mock(stdClass::class, TransactionContract::class);
+        $mockTransaction->shouldReceive('commit')->andReturn($mockEntity);
+        $mockTransaction->shouldReceive('rollback')->andReturn($mockEntity);
+
         $mockCategoryRepository = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
+        $mockCategoryRepository->shouldReceive('getIds')->andReturn([$idCategory]);
 
         $useCase = new UseCase($mockRepo, $mockTransaction, $mockCategoryRepository);
         $response = $useCase->execute($mockInput);

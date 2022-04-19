@@ -3,9 +3,11 @@
 namespace Costa\Core\UseCases\Genre;
 
 use Costa\Core\Domains\Entities\Genre;
+use Costa\Core\Domains\Exceptions\NotFoundDomainException;
 use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Domains\Repositories\GenreRepositoryInterface;
 use Costa\Core\UseCases\Contracts\TransactionContract;
+use Throwable;
 
 final class CreateGenreUseCase
 {
@@ -19,20 +21,38 @@ final class CreateGenreUseCase
 
     public function execute(DTO\Created\Input $input): DTO\Created\Output
     {
-        $category = new Genre(
+        $objGenre = new Genre(
             name: $input->name,
             isActive: $input->isActive,
             categories: $input->categories
         );
 
-        $genre = $this->repository->insert($category);
+        try {
+            $genre = $this->repository->insert($objGenre);
 
-        return new DTO\Created\Output(
-            id: $genre->id(),
-            name: $genre->name,
-            isActive: $genre->isActive,
-            created_at: $genre->createdAt(),
-            updated_at: $genre->createdAt(),
-        );
+            $this->validateCategories($input->categories);
+
+            $this->transactionContract->commit();
+
+            return new DTO\Created\Output(
+                id: $genre->id(),
+                name: $genre->name,
+                isActive: $genre->isActive,
+                created_at: $genre->createdAt(),
+                updated_at: $genre->createdAt(),
+            );
+        } catch (Throwable $e) {
+            $this->transactionContract->rollback();
+            throw $e;
+        }
+    }
+
+    private function validateCategories(array $ids = [])
+    {
+        $categoriesDb = $this->categoryRepositoryInterface->getIds($ids);
+
+        if (count($ids) !== count($categoriesDb)) {
+            throw new NotFoundDomainException("Total category this different");
+        }
     }
 }
