@@ -17,6 +17,7 @@ final class ListGenreUserCaseUnitTest extends TestCase
         $useCase = new ListGenreUseCase($mockery);
         $useCase->execute();
 
+        $this->assertTrue(true);
         Mockery::close();
     }
 }
