@@ -16,10 +16,12 @@ class Genre
         protected ?Uuid $id = null,
         protected bool $isActive = true,
         protected ?DateTime $createdAt = null,
+        protected ?DateTime $updatedAt = null,
         protected array $categories = [],
     ) {
         $this->id = $this->id ?? Uuid::random();
         $this->createdAt = $this->createdAt ?? new DateTime();
+        $this->updatedAt = $this->updatedAt ?? new DateTime();
         $this->validated();
     }
 
