@@ -6,7 +6,7 @@ class Input
 {
     public function __construct(
         public string $name,
-        public string $description = '',
+        public string|null $description = null,
         public bool $isActive = true,
         public string $createdAt = ''
     ) {

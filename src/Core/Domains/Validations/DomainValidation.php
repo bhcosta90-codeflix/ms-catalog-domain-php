@@ -13,14 +13,14 @@ final class DomainValidation
         }
     }
 
-    public static function strCanNullAndMaxLength(string $value, int $length = 255, string $exceptionMessage = null)
+    public static function strCanNullAndMaxLength(string|null $value, int $length = 255)
     {
-        !empty($value) && self::strMaxLength($value, $length);
+        !is_null($value) && !empty($value) && self::strMaxLength($value, $length);
     }
 
-    public static function strCanNullAndMinLength(string $value, int $length = 2, string $exceptionMessage = null)
+    public static function strCanNullAndMinLength(string|null $value, int $length = 2)
     {
-        !empty($value) && self::strMinLength($value, $length);
+        !is_null($value) && !empty($value) && self::strMinLength($value, $length);
     }
 
     public static function strMaxLength(string $value, int $length = 255, string $exceptionMessage = null)
