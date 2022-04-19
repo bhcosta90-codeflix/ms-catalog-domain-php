@@ -16,6 +16,8 @@ final class UpdateCategoryUseCase
     {
         $repo = $this->repository->findById($input->id);
 
+        $input->isActive ? $repo->enable() : $repo->disable();
+
         $repo->update(
             name: $input->name,
             description: $input->description ?? $repo->description
