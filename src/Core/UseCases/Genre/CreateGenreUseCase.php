@@ -28,11 +28,11 @@ final class CreateGenreUseCase
                 categories: $input->categories
             );
 
-            $genre = $this->repository->insert($objGenre);
-
             if ($input->categories !== null) {
                 $this->validateCategories($input->categories);
             }
+
+            $genre = $this->repository->insert($objGenre);
 
             $this->transactionContract->commit();
 

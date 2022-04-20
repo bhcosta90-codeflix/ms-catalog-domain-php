@@ -33,12 +33,11 @@ final class UpdateGenreUseCase
                 $repo->addCategory($category);
             }
 
-            $categoryUpdated = $this->repository->update($repo);
-
             if ($input->categories !== null) {
                 $this->validateCategories($input->categories);
             }
 
+            $categoryUpdated = $this->repository->update($repo);
             $this->transactionContract->commit();
 
             return new DTO\Updated\Output(

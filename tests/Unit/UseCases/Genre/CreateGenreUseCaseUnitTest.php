@@ -49,7 +49,7 @@ class CreateGenreUseCaseUnitTest extends TestCase
 
         $idCategory = Uuid::random();
 
-        $mockRepo = $this->mockRepository();
+        $mockRepo = $this->mockRepository(0);
         $mockTransaction = $this->mockTransaction();
         $mockCategoryRepository = $this->mockCategory([$idCategory]);
 
@@ -70,11 +70,11 @@ class CreateGenreUseCaseUnitTest extends TestCase
         return $mockEntity;
     }
 
-    private function mockRepository()
+    private function mockRepository($times = 1)
     {
         $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
         $mockRepo->shouldReceive('insert')
-            ->once()
+            ->times($times)
             ->andReturn($this->mockEntity());
 
         return $mockRepo;

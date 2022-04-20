@@ -50,7 +50,7 @@ class UpdateGenreUseCaseUnitTest extends TestCase
 
         $idCategory = Uuid::random();
 
-        $mockRepo = $this->mockRepository();
+        $mockRepo = $this->mockRepository(0);
         $mockTransaction = $this->mockTransaction();
         $mockCategoryRepository = $this->mockCategory([$idCategory]);
 
@@ -75,11 +75,11 @@ class UpdateGenreUseCaseUnitTest extends TestCase
         return $mockEntity;
     }
 
-    private function mockRepository()
+    private function mockRepository($times = 1)
     {
         $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
         $mockRepo->shouldReceive('findById')->once()->andReturn($entity = $this->mockEntity());
-        $mockRepo->shouldReceive('update')->once()->andReturn($entity);
+        $mockRepo->shouldReceive('update')->times($times)->andReturn($entity);
 
         return $mockRepo;
     }
