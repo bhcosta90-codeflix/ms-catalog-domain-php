@@ -19,7 +19,7 @@ final class GetGenreUseCase
         return new DTO\Find\Output(
             id: $repo->id,
             name: $repo->name,
-            isActive: $repo->isActive,
+            is_active: $repo->isActive,
             created_at: $repo->createdAt(),
             updated_at: $repo->updatedAt(),
         );
