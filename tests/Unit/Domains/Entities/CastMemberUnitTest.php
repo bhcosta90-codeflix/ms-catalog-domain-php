@@ -97,7 +97,7 @@ class CastMemberUnitTest extends TestCase
         $this->assertEquals('2022-01-01 00:00:00', $category->createdAt());
     }
 
-    public function testExceptionName()
+    public function testExceptionCreateMinName()
     {
         $this->expectException(EntityValidationException::class);
 
@@ -105,6 +105,47 @@ class CastMemberUnitTest extends TestCase
             type: CastMemberType::ACTOR,
             name: "t",
             isActive: true
+        );
+    }
+
+    public function testExceptionCreateMaxName()
+    {
+        $this->expectException(EntityValidationException::class);
+
+        new CastMember(
+            type: CastMemberType::ACTOR,
+            name: str_repeat("t", 256),
+            isActive: true
+        );
+    }
+
+    public function testExceptionUpdateMinName()
+    {
+        $this->expectException(EntityValidationException::class);
+
+        $castMember = new CastMember(
+            type: CastMemberType::ACTOR,
+            name: "t12356",
+            isActive: true
+        );
+
+        $castMember->update(
+            name: 'a'
+        );
+    }
+
+    public function testExceptionUpdateMaxName()
+    {
+        $this->expectException(EntityValidationException::class);
+
+        $castMember = new CastMember(
+            type: CastMemberType::ACTOR,
+            name: "t12356",
+            isActive: true
+        );
+
+        $castMember->update(
+            name: str_repeat("t", 256),
         );
     }
 }
