@@ -13,8 +13,8 @@ class CastMember
     use MagicMethodsTrait;
 
     public function __construct(
-        protected CastMemberType $type,
         protected string $name,
+        protected CastMemberType $type,
         protected ?Uuid $id = null,
         protected bool $isActive = true,
         protected DateTime|string $createdAt = '',
