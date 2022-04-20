@@ -17,7 +17,7 @@ class Genre
         protected bool $isActive = true,
         protected ?DateTime $createdAt = null,
         protected ?DateTime $updatedAt = null,
-        protected array $categories = [],
+        protected ?array $categories = null,
     ) {
         $this->id = $this->id ?? Uuid::random();
         $this->createdAt = $this->createdAt ?? new DateTime();
