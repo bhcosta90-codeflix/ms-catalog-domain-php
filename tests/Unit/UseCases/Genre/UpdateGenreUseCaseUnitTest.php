@@ -39,7 +39,6 @@ class UpdateGenreUseCaseUnitTest extends TestCase
         $mockSpy->shouldReceive('findById')->andReturn($entity = $this->mockEntity());
         $mockSpy->shouldReceive('update')->andReturn($entity);
 
-
         $useCase = new UseCase($mockSpy, $mockTransaction, $mockCategoryRepository);
         $useCase->execute($mockInput);
         $mockSpy->shouldHaveReceived('update');
@@ -70,6 +69,7 @@ class UpdateGenreUseCaseUnitTest extends TestCase
         $mockEntity->shouldReceive('id')->andReturn($uuid);
         $mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
         $mockEntity->shouldReceive('updatedAt')->andReturn(date('Y-m-d H:i:s'));
+        $mockEntity->shouldReceive('addCategory');
         $mockEntity->shouldReceive('enable');
         $mockEntity->shouldReceive('update');
         return $mockEntity;

@@ -8,7 +8,7 @@ class Input
         public string $name,
         public bool $isActive = true,
         public string $createdAt = '',
-        public array $categories = [],
+        public ?array $categories = null,
     ) {
         //
     }

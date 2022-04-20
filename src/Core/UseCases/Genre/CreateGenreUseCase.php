@@ -30,7 +30,9 @@ final class CreateGenreUseCase
 
             $genre = $this->repository->insert($objGenre);
 
-            $this->validateCategories($input->categories);
+            if ($input->categories !== null) {
+                $this->validateCategories($input->categories);
+            }
 
             $this->transactionContract->commit();
 

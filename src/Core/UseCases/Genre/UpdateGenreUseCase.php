@@ -29,9 +29,15 @@ final class UpdateGenreUseCase
                 name: $input->name,
             );
 
+            foreach ($input->categories ?: [] as $category) {
+                $repo->addCategory($category);
+            }
+
             $categoryUpdated = $this->repository->update($repo);
 
-            $this->validateCategories($input->categories);
+            if ($input->categories !== null) {
+                $this->validateCategories($input->categories);
+            }
 
             $this->transactionContract->commit();
 

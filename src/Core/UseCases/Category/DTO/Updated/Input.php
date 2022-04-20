@@ -8,7 +8,7 @@ class Input
         public string $id,
         public string $name,
         public string|null $description = null,
-        public bool|null $isActive = null,
+        public ?bool $isActive = null,
         public string $createdAt = ''
     ) {
         //
