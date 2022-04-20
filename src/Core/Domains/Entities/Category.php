@@ -49,7 +49,7 @@ class Category
     protected function validated()
     {
         DomainValidation::strMaxLength($this->name);
-        DomainValidation::strMinLength($this->name, 2);
+        DomainValidation::strMinLength($this->name);
         DomainValidation::strCanNullAndMinLength($this->description);
         DomainValidation::strCanNullAndMaxLength($this->description);
     }

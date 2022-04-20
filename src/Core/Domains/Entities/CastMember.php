@@ -54,6 +54,6 @@ class CastMember
     protected function validated()
     {
         DomainValidation::strMaxLength($this->name);
-        DomainValidation::strMinLength($this->name, 2);
+        DomainValidation::strMinLength($this->name);
     }
 }
