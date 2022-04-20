@@ -39,7 +39,7 @@ final class CreateGenreUseCase
             return new DTO\Created\Output(
                 id: $genre->id(),
                 name: $genre->name,
-                isActive: $genre->isActive,
+                is_active: $genre->isActive,
                 created_at: $genre->createdAt(),
                 updated_at: $genre->createdAt(),
             );

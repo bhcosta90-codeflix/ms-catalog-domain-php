@@ -43,7 +43,7 @@ final class UpdateGenreUseCase
             return new DTO\Updated\Output(
                 id: $categoryUpdated->id,
                 name: $categoryUpdated->name,
-                isActive: $categoryUpdated->isActive,
+                is_active: $categoryUpdated->isActive,
                 created_at: $categoryUpdated->createdAt(),
                 updated_at: $categoryUpdated->updatedAt(),
             );
