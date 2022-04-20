@@ -57,7 +57,6 @@ class DeleteCategoryUserCaseUnitTest extends TestCase
             $id,
             $categoryName
         ]);
-        $mockEntity->shouldReceive('delete');
 
         $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
         $mockRepo->shouldReceive('findById')->once()->andReturn($mockEntity);
