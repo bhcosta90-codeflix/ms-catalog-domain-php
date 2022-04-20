@@ -73,7 +73,9 @@ class CreateGenreUseCaseUnitTest extends TestCase
     private function mockRepository()
     {
         $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $mockRepo->shouldReceive('insert')->andReturn($this->mockEntity());
+        $mockRepo->shouldReceive('insert')
+            ->once()
+            ->andReturn($this->mockEntity());
 
         return $mockRepo;
     }

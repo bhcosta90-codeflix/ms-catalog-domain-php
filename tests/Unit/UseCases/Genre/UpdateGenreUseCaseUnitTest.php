@@ -78,8 +78,8 @@ class UpdateGenreUseCaseUnitTest extends TestCase
     private function mockRepository()
     {
         $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $mockRepo->shouldReceive('findById')->andReturn($entity = $this->mockEntity());
-        $mockRepo->shouldReceive('update')->andReturn($entity);
+        $mockRepo->shouldReceive('findById')->once()->andReturn($entity = $this->mockEntity());
+        $mockRepo->shouldReceive('update')->once()->andReturn($entity);
 
         return $mockRepo;
     }

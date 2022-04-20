@@ -26,8 +26,8 @@ class UpdateCategoryUserCaseUnitTest extends TestCase
         $mockEntity->shouldReceive('update')->shouldReceive('enable');
 
         $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $mockRepo->shouldReceive('findById')->andReturn($mockEntity);
-        $mockRepo->shouldReceive('update')->andReturn($mockEntity);
+        $mockRepo->shouldReceive('findById')->once()->andReturn($mockEntity);
+        $mockRepo->shouldReceive('update')->once()->andReturn($mockEntity);
 
         $mockInput = Mockery::mock(Input::class, [
             $id,
