@@ -32,7 +32,7 @@ class CreateCastMemberUseCaseUnitTest extends TestCase
 
         $mockInput = Mockery::mock(Input::class, [
             $categoryName,
-            CastMemberType::ACTOR,
+            1,
         ]);
 
         $useCase = new UseCase($mockRepo);
@@ -40,7 +40,7 @@ class CreateCastMemberUseCaseUnitTest extends TestCase
 
         $this->assertInstanceOf(Output::class, $response);
         $this->assertEquals($categoryName, $response->name);
-        $this->assertEquals(CastMemberType::ACTOR, $response->type);
+        $this->assertEquals(1, $response->type);
     }
 
     protected function tearDown(): void

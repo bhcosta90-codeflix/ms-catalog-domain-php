@@ -3,6 +3,7 @@
 namespace Costa\Core\Modules\CastMember\UseCases;
 
 use Costa\Core\Modules\CastMember\Entities\CastMember;
+use Costa\Core\Modules\CastMember\Enums\CastMemberType;
 use Costa\Core\Modules\CastMember\Repositories\CastMemberRepositoryInterface;
 
 final class CreateCastMemberUseCase
@@ -17,7 +18,7 @@ final class CreateCastMemberUseCase
     {
         $obj = new CastMember(
             name: $input->name,
-            type: $input->type,
+            type: $input->type == 1 ? CastMemberType::DIRECTOR : CastMemberType::ACTOR,
             isActive: $input->isActive,
         );
 
@@ -26,7 +27,7 @@ final class CreateCastMemberUseCase
         return new DTO\Created\Output(
             id: $obj->id,
             name: $obj->name,
-            type: $obj->type,
+            type: $input->type,
             is_active: $obj->isActive,
             created_at: $obj->createdAt(),
             updated_at: $obj->createdAt(),
