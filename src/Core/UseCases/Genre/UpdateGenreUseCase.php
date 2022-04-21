@@ -3,7 +3,7 @@
 namespace Costa\Core\UseCases\Genre;
 
 use Costa\Core\Domains\Exceptions\NotFoundDomainException;
-use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
+use Costa\Core\Category\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Domains\Repositories\GenreRepositoryInterface;
 use Costa\Core\UseCases\Contracts\TransactionContract;
 use Throwable;

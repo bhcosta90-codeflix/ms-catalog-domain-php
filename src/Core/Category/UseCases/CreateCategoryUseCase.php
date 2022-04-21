@@ -1,9 +1,9 @@
 <?php
 
-namespace Costa\Core\UseCases\Category;
+namespace Costa\Core\Category\UseCases;
 
-use Costa\Core\Domains\Entities\Category;
-use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
+use Costa\Core\Category\Entities\Category;
+use Costa\Core\Category\Repositories\CategoryRepositoryInterface;
 
 final class CreateCategoryUseCase
 {

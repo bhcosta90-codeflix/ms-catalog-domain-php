@@ -1,8 +1,9 @@
 <?php
 
-namespace Costa\Core\Domains\Repositories;
+namespace Costa\Core\Category\Repositories;
 
-use Costa\Core\Domains\Entities\Category as Entity;
+use Costa\Core\Category\Entities\Category as Entity;
+use Costa\Core\Domains\Repositories\PaginationInterface;
 
 interface CategoryRepositoryInterface
 {

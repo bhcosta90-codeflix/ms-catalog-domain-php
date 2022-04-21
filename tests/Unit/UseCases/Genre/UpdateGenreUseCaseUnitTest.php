@@ -4,7 +4,7 @@ namespace Tests\Unit\UseCase\Genre;
 
 use Costa\Core\Domains\Entities\Genre as Entity;
 use Costa\Core\Domains\Exceptions\NotFoundDomainException;
-use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
+use Costa\Core\Category\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Domains\Repositories\GenreRepositoryInterface as RepositoryInterface;
 use Costa\Core\Domains\ValueObject\Uuid;
 use Costa\Core\UseCases\Contracts\TransactionContract;

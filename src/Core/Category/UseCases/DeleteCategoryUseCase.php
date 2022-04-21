@@ -1,8 +1,8 @@
 <?php
 
-namespace Costa\Core\UseCases\Category;
+namespace Costa\Core\Category\UseCases;
 
-use Costa\Core\Domains\Repositories\CategoryRepositoryInterface;
+use Costa\Core\Category\Repositories\CategoryRepositoryInterface;
 
 final class DeleteCategoryUseCase
 {
