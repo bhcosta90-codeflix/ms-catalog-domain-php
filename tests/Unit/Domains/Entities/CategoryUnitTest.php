@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Domains\Entities;
 
-use Costa\Core\Category\Entities\Category;
+use Costa\Core\Modules\Category\Entities\Category;
 use Costa\Core\Domains\Exceptions\EntityValidationException;
 use Costa\Core\Domains\ValueObject\Uuid;
 use InvalidArgumentException;

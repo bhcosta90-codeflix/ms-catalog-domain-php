@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\UseCase\CastMember;
 
-use Costa\Core\CastMember\Entities\CastMember as Entity;
-use Costa\Core\CastMember\Enums\CastMemberType;
-use Costa\Core\CastMember\Repositories\CastMemberRepositoryInterface as RepositoryInterface;
+use Costa\Core\Modules\CastMember\Entities\CastMember as Entity;
+use Costa\Core\Modules\CastMember\Enums\CastMemberType;
+use Costa\Core\Modules\CastMember\Repositories\CastMemberRepositoryInterface as RepositoryInterface;
 use Costa\Core\Domains\ValueObject\Uuid;
-use Costa\Core\CastMember\UseCases\CreateCastMemberUseCase as UseCase;
-use Costa\Core\CastMember\UseCases\DTO\Created\Input;
-use Costa\Core\CastMember\UseCases\DTO\Created\Output;
+use Costa\Core\Modules\CastMember\UseCases\CreateCastMemberUseCase as UseCase;
+use Costa\Core\Modules\CastMember\UseCases\DTO\Created\Input;
+use Costa\Core\Modules\CastMember\UseCases\DTO\Created\Output;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use stdClass;

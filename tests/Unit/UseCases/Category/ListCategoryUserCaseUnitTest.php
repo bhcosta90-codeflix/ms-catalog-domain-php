@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\UseCase\Category;
 
-use Costa\Core\Category\Repositories\CategoryRepositoryInterface as RepositoryInterface;
-use Costa\Core\Category\UseCases\ListCategoryUseCase as UseCase;
+use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface as RepositoryInterface;
+use Costa\Core\Modules\Category\UseCases\ListCategoryUseCase as UseCase;
 use Costa\Core\Domains\Repositories\PaginationInterface;
-use Costa\Core\Category\UseCases\DTO\List\Input;
-use Costa\Core\Category\UseCases\DTO\List\Output;
+use Costa\Core\Modules\Category\UseCases\DTO\List\Input;
+use Costa\Core\Modules\Category\UseCases\DTO\List\Output;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use stdClass;

@@ -3,11 +3,11 @@
 namespace Tests\Unit\UseCase\Genre;
 
 use Costa\Core\Domains\ValueObject\Uuid;
-use Costa\Core\Genre\Entities\Genre as Entity;
-use Costa\Core\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
-use Costa\Core\Genre\UseCases\DeleteGenreUseCase as UseCase;
-use Costa\Core\Genre\UseCases\DTO\Deleted\Input;
-use Costa\Core\Genre\UseCases\DTO\Deleted\Output;
+use Costa\Core\Modules\Genre\Entities\Genre as Entity;
+use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
+use Costa\Core\Modules\Genre\UseCases\DeleteGenreUseCase as UseCase;
+use Costa\Core\Modules\Genre\UseCases\DTO\Deleted\Input;
+use Costa\Core\Modules\Genre\UseCases\DTO\Deleted\Output;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 

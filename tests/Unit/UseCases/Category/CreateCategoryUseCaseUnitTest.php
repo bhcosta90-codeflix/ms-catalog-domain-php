@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\UseCase\Category;
 
-use Costa\Core\Category\Entities\Category as Entity;
-use Costa\Core\Category\Repositories\CategoryRepositoryInterface as RepositoryInterface;
-use Costa\Core\Category\UseCases\CreateCategoryUseCase as UseCase;
-use Costa\Core\Category\UseCases\DTO\Created\Input;
-use Costa\Core\Category\UseCases\DTO\Created\Output;
+use Costa\Core\Modules\Category\Entities\Category as Entity;
+use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface as RepositoryInterface;
+use Costa\Core\Modules\Category\UseCases\CreateCategoryUseCase as UseCase;
+use Costa\Core\Modules\Category\UseCases\DTO\Created\Input;
+use Costa\Core\Modules\Category\UseCases\DTO\Created\Output;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;

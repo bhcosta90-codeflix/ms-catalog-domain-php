@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\UseCase\Genre;
 
-use Costa\Core\Genre\UseCases\ListGenreUseCase as UseCase;
-use Costa\Core\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
+use Costa\Core\Modules\Genre\UseCases\ListGenreUseCase as UseCase;
+use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
 
 use Costa\Core\Domains\Repositories\PaginationInterface;
 use PHPUnit\Framework\TestCase;
-use Costa\Core\Genre\UseCases\DTO\List\Input;
-use Costa\Core\Genre\UseCases\DTO\List\Output;
+use Costa\Core\Modules\Genre\UseCases\DTO\List\Input;
+use Costa\Core\Modules\Genre\UseCases\DTO\List\Output;
 use Mockery;
 use stdClass;
 
