@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\Domains\Enums;
+namespace Costa\Core\CastMember\Enums;
 
 enum CastMemberType: int
 {

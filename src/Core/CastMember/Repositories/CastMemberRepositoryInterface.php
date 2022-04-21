@@ -1,8 +1,9 @@
 <?php
 
-namespace Costa\Core\Domains\Repositories;
+namespace Costa\Core\CastMember\Repositories;
 
-use Costa\Core\Domains\Entities\CastMember as Entity;
+use Costa\Core\CastMember\Entities\CastMember as Entity;
+use Costa\Core\Domains\Repositories\PaginationInterface;
 
 interface CastMemberRepositoryInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Costa\Core\Domains\Entities;
+namespace Costa\Core\CastMember\Entities;
 
-use Costa\Core\Domains\Enums\CastMemberType;
+use Costa\Core\CastMember\Enums\CastMemberType;
 use Costa\Core\Domains\Traits\MagicMethodsTrait;
 use Costa\Core\Domains\Validations\DomainValidation;
 use Costa\Core\Domains\ValueObject\Uuid;

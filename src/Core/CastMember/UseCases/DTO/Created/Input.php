@@ -1,8 +1,8 @@
 <?php
 
-namespace Costa\Core\UseCases\CastMember\DTO\Created;
+namespace Costa\Core\CastMember\UseCases\DTO\Created;
 
-use Costa\Core\Domains\Enums\CastMemberType;
+use Costa\Core\CastMember\Enums\CastMemberType;
 
 class Input
 {

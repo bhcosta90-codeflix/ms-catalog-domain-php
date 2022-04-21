@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Domains\Entities;
 
-use Costa\Core\Domains\Entities\CastMember;
-use Costa\Core\Domains\Enums\CastMemberType;
+use Costa\Core\CastMember\Entities\CastMember;
+use Costa\Core\CastMember\Enums\CastMemberType;
 use Costa\Core\Domains\Exceptions\EntityValidationException;
 use Costa\Core\Domains\ValueObject\Uuid;
 use InvalidArgumentException;

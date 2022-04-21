@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\CastMember\DTO\List;
+namespace Costa\Core\CastMember\UseCases\DTO\List;
 
 class Output
 {

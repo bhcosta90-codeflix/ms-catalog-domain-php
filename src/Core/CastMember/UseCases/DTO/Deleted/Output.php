@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\CastMember\DTO\Deleted;
+namespace Costa\Core\CastMember\UseCases\DTO\Deleted;
 
 class Output
 {

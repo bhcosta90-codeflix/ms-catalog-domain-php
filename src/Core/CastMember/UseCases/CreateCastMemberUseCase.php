@@ -1,9 +1,9 @@
 <?php
 
-namespace Costa\Core\UseCases\CastMember;
+namespace Costa\Core\CastMember\UseCases;
 
-use Costa\Core\Domains\Entities\CastMember;
-use Costa\Core\Domains\Repositories\CastMemberRepositoryInterface;
+use Costa\Core\CastMember\Entities\CastMember;
+use Costa\Core\CastMember\Repositories\CastMemberRepositoryInterface;
 
 final class CreateCastMemberUseCase
 {
