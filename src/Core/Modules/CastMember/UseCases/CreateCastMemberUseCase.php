@@ -27,7 +27,7 @@ final class CreateCastMemberUseCase
         return new DTO\Created\Output(
             id: $obj->id,
             name: $obj->name,
-            type: $input->type,
+            type: $obj->type->value,
             is_active: $obj->isActive,
             created_at: $obj->createdAt(),
             updated_at: $obj->createdAt(),
