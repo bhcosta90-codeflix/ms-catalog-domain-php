@@ -16,7 +16,6 @@ class CastMember
         protected string $name,
         protected CastMemberType $type,
         protected ?Uuid $id = null,
-        protected bool $isActive = true,
         protected DateTime|string $createdAt = '',
         protected DateTime|string $updatedAt = '',
     ) {

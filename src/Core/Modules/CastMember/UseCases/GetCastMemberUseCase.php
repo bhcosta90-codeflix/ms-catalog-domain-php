@@ -20,7 +20,6 @@ final class GetCastMemberUseCase
             id: $repo->id,
             name: $repo->name,
             type: $repo->type->value,
-            is_active: $repo->isActive,
             created_at: $repo->createdAt(),
             updated_at: $repo->updatedAt(),
         );

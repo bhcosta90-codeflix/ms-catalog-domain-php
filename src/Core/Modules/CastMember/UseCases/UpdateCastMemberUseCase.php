@@ -17,7 +17,6 @@ final class UpdateCastMemberUseCase
     {
         $repo = $this->repository->findById($input->id);
 
-        $input->isActive !== null ? ($input->isActive ? $repo->enable() : $repo->disable()) : null;
         $repo->changeType($input->type == 1 ? CastMemberType::DIRECTOR : CastMemberType::ACTOR);
 
         $repo->update(
@@ -30,7 +29,6 @@ final class UpdateCastMemberUseCase
             id: $categoryUpdated->id,
             name: $categoryUpdated->name,
             type: $input->type,
-            is_active: $categoryUpdated->isActive,
             created_at: $categoryUpdated->createdAt(),
             updated_at: $categoryUpdated->updatedAt(),
         );

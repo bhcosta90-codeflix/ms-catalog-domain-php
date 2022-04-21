@@ -15,44 +15,13 @@ class CastMemberUnitTest extends TestCase
     {
         $category = new CastMember(
             name: "teste",
-            isActive: true,
             type: CastMemberType::ACTOR,
         );
 
         $this->assertNotEmpty($category->id());
         $this->assertEquals('teste', $category->name);
         $this->assertEquals(CastMemberType::ACTOR, $category->type);
-        $this->assertTrue($category->isActive);
         $this->assertNotEmpty($category->createdAt());
-    }
-
-    public function testDisabled()
-    {
-        $category = new CastMember(
-            name: "teste",
-            type: CastMemberType::ACTOR,
-        );
-
-        $this->assertTrue($category->isActive);
-
-        $category->disable();
-
-        $this->assertFalse($category->isActive);
-    }
-
-    public function testEnabled()
-    {
-        $category = new CastMember(
-            name: "teste",
-            type: CastMemberType::ACTOR,
-            isActive: false
-        );
-
-        $this->assertFalse($category->isActive);
-
-        $category->enable();
-
-        $this->assertTrue($category->isActive);
     }
 
     public function testChangeType()
@@ -60,7 +29,6 @@ class CastMemberUnitTest extends TestCase
         $category = new CastMember(
             name: "teste",
             type: CastMemberType::ACTOR,
-            isActive: false
         );
         
         $category->changeType(CastMemberType::DIRECTOR);
@@ -78,7 +46,6 @@ class CastMemberUnitTest extends TestCase
             id: $uuid,
             type: CastMemberType::ACTOR,
             name: "teste",
-            isActive: true,
             createdAt: '2022-01-01 00:00:00'
         );
 
@@ -104,7 +71,6 @@ class CastMemberUnitTest extends TestCase
         new CastMember(
             type: CastMemberType::ACTOR,
             name: "t",
-            isActive: true
         );
     }
 
@@ -115,7 +81,6 @@ class CastMemberUnitTest extends TestCase
         new CastMember(
             type: CastMemberType::ACTOR,
             name: str_repeat("t", 256),
-            isActive: true
         );
     }
 
@@ -126,7 +91,6 @@ class CastMemberUnitTest extends TestCase
         $castMember = new CastMember(
             type: CastMemberType::ACTOR,
             name: "t12356",
-            isActive: true
         );
 
         $castMember->update(
@@ -141,7 +105,6 @@ class CastMemberUnitTest extends TestCase
         $castMember = new CastMember(
             type: CastMemberType::ACTOR,
             name: "t12356",
-            isActive: true
         );
 
         $castMember->update(

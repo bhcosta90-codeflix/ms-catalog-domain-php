@@ -19,7 +19,6 @@ final class CreateCastMemberUseCase
         $obj = new CastMember(
             name: $input->name,
             type: $input->type == 1 ? CastMemberType::DIRECTOR : CastMemberType::ACTOR,
-            isActive: $input->isActive,
         );
 
         $this->repository->insert($obj);
@@ -28,7 +27,6 @@ final class CreateCastMemberUseCase
             id: $obj->id,
             name: $obj->name,
             type: $obj->type->value,
-            is_active: $obj->isActive,
             created_at: $obj->createdAt(),
             updated_at: $obj->createdAt(),
         );
