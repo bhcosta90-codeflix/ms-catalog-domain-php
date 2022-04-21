@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domains\Validations;
+namespace Tests\Unit\Utils\Validations;
 
 use Costa\Core\Utils\Exceptions\EntityValidationException;
 use Costa\Core\Utils\Validations\DomainValidation;

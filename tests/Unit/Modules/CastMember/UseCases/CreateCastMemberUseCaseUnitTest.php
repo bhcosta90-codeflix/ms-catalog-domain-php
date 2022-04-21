@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\UseCase\CastMember;
+namespace Tests\Unit\CastMember\UseCase;
 
 use Costa\Core\Modules\CastMember\Entities\CastMember as Entity;
 use Costa\Core\Modules\CastMember\Enums\CastMemberType;

@@ -1,33 +1,33 @@
 <?php
 
-namespace Tests\Unit\UseCase\Genre;
+namespace Tests\Unit\Category\UseCases;
 
-use Costa\Core\Utils\ValueObject\Uuid;
-use Costa\Core\Modules\Genre\Entities\Genre as Entity;
-use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
-use Costa\Core\Modules\Genre\UseCases\DeleteGenreUseCase as UseCase;
-use Costa\Core\Modules\Genre\UseCases\DTO\Deleted\Input;
-use Costa\Core\Modules\Genre\UseCases\DTO\Deleted\Output;
+use Costa\Core\Modules\Category\Entities\Category as Entity;
+use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface as RepositoryInterface;
+use Costa\Core\Modules\Category\UseCases\DeleteCategoryUseCase as UseCase;
+use Costa\Core\Modules\Category\UseCases\DTO\Deleted\Input;
+use Costa\Core\Modules\Category\UseCases\DTO\Deleted\Output;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
-class DeleteGenreUserCaseUnitTest extends TestCase
+class DeleteCategoryUserCaseUnitTest extends TestCase
 {
     public function testDelete(){
-        $id = Uuid::random();
+        $id = (string) Uuid::uuid4()->toString();
         $categoryName = 'teste de categoria';
 
         $mockEntity = Mockery::mock(Entity::class, [
-            $categoryName,
             $id,
+            $categoryName
         ]);
 
         $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $mockRepo->shouldReceive('findById')->once()->andReturn($mockEntity);
-        $mockRepo->shouldReceive('delete')->once()->andReturn(true);
+        $mockRepo->shouldReceive('findById')->andReturn($mockEntity);
+        $mockRepo->shouldReceive('delete')->andReturn(true);
 
         $mockInput = Mockery::mock(Input::class, [
-            (string) $id
+            $id
         ]);
 
         $useCase = new UseCase($mockRepo);
@@ -50,17 +50,17 @@ class DeleteGenreUserCaseUnitTest extends TestCase
     }
 
     public function testDeleteFalse(){
-        $id = Uuid::random();
+        $id = (string) Uuid::uuid4()->toString();
         $categoryName = 'teste de categoria';
 
         $mockEntity = Mockery::mock(Entity::class, [
-            $categoryName,
             $id,
+            $categoryName
         ]);
 
         $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $mockRepo->shouldReceive('findById')->andReturn($mockEntity);
-        $mockRepo->shouldReceive('delete')->andReturn(false);
+        $mockRepo->shouldReceive('findById')->once()->andReturn($mockEntity);
+        $mockRepo->shouldReceive('delete')->once()->andReturn(false);
 
         $mockInput = Mockery::mock(Input::class, [
             $id

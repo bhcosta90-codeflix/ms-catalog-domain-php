@@ -1,34 +1,36 @@
 <?php
 
-namespace Tests\Unit\Domains\Entities;
+namespace Tests\Unit\CastMember\Entities;
 
-use Costa\Core\Modules\Category\Entities\Category;
+use Costa\Core\Modules\CastMember\Entities\CastMember;
+use Costa\Core\Modules\CastMember\Enums\CastMemberType;
 use Costa\Core\Utils\Exceptions\EntityValidationException;
 use Costa\Core\Utils\ValueObject\Uuid;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class CategoryUnitTest extends TestCase
+class CastMemberUnitTest extends TestCase
 {
     public function testAttributes()
     {
-        $category = new Category(
+        $category = new CastMember(
             name: "teste",
-            description: "New desc",
-            isActive: true
+            isActive: true,
+            type: CastMemberType::ACTOR,
         );
 
         $this->assertNotEmpty($category->id());
         $this->assertEquals('teste', $category->name);
-        $this->assertEquals('New desc', $category->description);
+        $this->assertEquals(CastMemberType::ACTOR, $category->type);
         $this->assertTrue($category->isActive);
         $this->assertNotEmpty($category->createdAt());
     }
 
     public function testDisabled()
     {
-        $category = new Category(
-            name: "teste"
+        $category = new CastMember(
+            name: "teste",
+            type: CastMemberType::ACTOR,
         );
 
         $this->assertTrue($category->isActive);
@@ -40,8 +42,9 @@ class CategoryUnitTest extends TestCase
 
     public function testEnabled()
     {
-        $category = new Category(
+        $category = new CastMember(
             name: "teste",
+            type: CastMemberType::ACTOR,
             isActive: false
         );
 
@@ -52,78 +55,97 @@ class CategoryUnitTest extends TestCase
         $this->assertTrue($category->isActive);
     }
 
+    public function testChangeType()
+    {
+        $category = new CastMember(
+            name: "teste",
+            type: CastMemberType::ACTOR,
+            isActive: false
+        );
+        
+        $category->changeType(CastMemberType::DIRECTOR);
+
+        $this->assertEquals(CastMemberType::DIRECTOR, $category->type);
+
+    }
+
     public function testUpdate()
     {
 
         $uuid = Uuid::random();
 
-        $category = new Category(
+        $category = new CastMember(
             id: $uuid,
+            type: CastMemberType::ACTOR,
             name: "teste",
-            description: "New desc",
             isActive: true,
             createdAt: '2022-01-01 00:00:00'
         );
 
         $category->update(
             name: "new_name",
-            description: "new_desc"
         );
 
         $this->assertEquals('new_name', $category->name);
-        $this->assertEquals('new_desc', $category->description);
 
         $category->update(
             name: "new_name 2",
-            description: null
         );
 
         $this->assertEquals($uuid, $category->id);
         $this->assertEquals('new_name 2', $category->name);
         $this->assertEquals('2022-01-01 00:00:00', $category->createdAt());
-        $this->assertNull($category->description);
     }
 
-    public function testExceptionUuid()
-    {
-        $this->expectException(InvalidArgumentException::class);
-
-        $uuid = 'hash.value';
-
-        new Category(
-            id: $uuid,
-            name: "teste",
-            description: "New desc",
-            isActive: true
-        );
-    }
-
-    public function testExceptionName()
+    public function testExceptionCreateMinName()
     {
         $this->expectException(EntityValidationException::class);
 
-        new Category(
+        new CastMember(
+            type: CastMemberType::ACTOR,
             name: "t",
-            description: "New desc",
             isActive: true
         );
     }
 
-    public function testExceptionDescriptionMinLength()
+    public function testExceptionCreateMaxName()
     {
         $this->expectException(EntityValidationException::class);
-        new Category(
-            name: "teste",
-            description: "1",
+
+        new CastMember(
+            type: CastMemberType::ACTOR,
+            name: str_repeat("t", 256),
+            isActive: true
         );
     }
 
-    public function testExceptionDescriptionMaxLength()
+    public function testExceptionUpdateMinName()
     {
         $this->expectException(EntityValidationException::class);
-        new Category(
-            name: "teste",
-            description: str_repeat("1", 300),
+
+        $castMember = new CastMember(
+            type: CastMemberType::ACTOR,
+            name: "t12356",
+            isActive: true
+        );
+
+        $castMember->update(
+            name: 'a'
+        );
+    }
+
+    public function testExceptionUpdateMaxName()
+    {
+        $this->expectException(EntityValidationException::class);
+
+        $castMember = new CastMember(
+            type: CastMemberType::ACTOR,
+            name: "t12356",
+            isActive: true
+        );
+
+        $castMember->update(
+            name: str_repeat("t", 256),
         );
     }
 }

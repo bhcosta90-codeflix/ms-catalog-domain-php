@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\UseCase\Category;
+namespace Tests\Unit\Category\UseCases;
 
 use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface as RepositoryInterface;
 use Costa\Core\Modules\Category\UseCases\ListCategoryUseCase as UseCase;

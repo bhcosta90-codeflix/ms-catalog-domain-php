@@ -1,38 +1,37 @@
 <?php
 
-namespace Tests\Unit\UseCase\Category;
+namespace Tests\Unit\Genre\UseCases;
 
-use Costa\Core\Modules\Category\Entities\Category as Entity;
-use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface as RepositoryInterface;
-use Costa\Core\Modules\Category\UseCases\GetCategoryUseCase as UseCase;
-use Costa\Core\Modules\Category\UseCases\DTO\Find\Input;
-use Costa\Core\Modules\Category\UseCases\DTO\Find\Output;
-use Mockery;
+use Costa\Core\Modules\Genre\Entities\Genre as Entity;
+use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
+use Costa\Core\Modules\Genre\UseCases\GetGenreUseCase as UseCase;
+use Costa\Core\Utils\ValueObject\Uuid;
 use PHPUnit\Framework\TestCase;
-use Ramsey\Uuid\Uuid;
+use Costa\Core\Modules\Genre\UseCases\DTO\Find\Input;
+use Costa\Core\Modules\Genre\UseCases\DTO\Find\Output;
+use Mockery;
 use stdClass;
 
-class GetCategoryUserCaseUnitTest extends TestCase
+class GetGenreUseCaseUnitTest extends TestCase
 {
-   
     public function testGetById()
     {
-        $id = (string) Uuid::uuid4()->toString();
+        $id = Uuid::random();
         $categoryName = 'teste de categoria';
 
         $mockEntity = Mockery::mock(Entity::class, [
+            $categoryName,
             $id,
-            $categoryName
         ]);
         $mockEntity->shouldReceive('id')->andReturn($id);
         $mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
         $mockEntity->shouldReceive('updatedAt')->andReturn(date('Y-m-d H:i:s'));
 
         $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $mockRepo->shouldReceive('findById')->with($id)->andReturn($mockEntity);
+        $mockRepo->shouldReceive('findById')->with((string) $id)->andReturn($mockEntity);
 
         $mockInput = Mockery::mock(Input::class, [
-            $id
+            (string) $id
         ]);
 
         $useCase = new UseCase($mockRepo);
@@ -46,7 +45,7 @@ class GetCategoryUserCaseUnitTest extends TestCase
          * spies
          */
         $mockSpy = Mockery::spy(stdClass::class, RepositoryInterface::class);
-        $mockSpy->shouldReceive('findById')->with($id)->andReturn($mockEntity);
+        $mockSpy->shouldReceive('findById')->with((string) $id)->andReturn($mockEntity);
 
         $useCase = new UseCase($mockSpy);
         $useCase->execute($mockInput);

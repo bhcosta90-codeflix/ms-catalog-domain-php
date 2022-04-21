@@ -1,37 +1,38 @@
 <?php
 
-namespace Tests\Unit\UseCase\Category;
+namespace Tests\Unit\Category\UseCases;
 
 use Costa\Core\Modules\Category\Entities\Category as Entity;
 use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface as RepositoryInterface;
-use Costa\Core\Modules\Category\UseCases\CreateCategoryUseCase as UseCase;
-use Costa\Core\Modules\Category\UseCases\DTO\Created\Input;
-use Costa\Core\Modules\Category\UseCases\DTO\Created\Output;
+use Costa\Core\Modules\Category\UseCases\GetCategoryUseCase as UseCase;
+use Costa\Core\Modules\Category\UseCases\DTO\Find\Input;
+use Costa\Core\Modules\Category\UseCases\DTO\Find\Output;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use stdClass;
 
-class CreateCategoryUseCaseUnitTest extends TestCase
+class GetCategoryUserCaseUnitTest extends TestCase
 {
-
-    public function testCreateNewCategory()
+   
+    public function testGetById()
     {
-        $uuid = (string) Uuid::uuid4()->toString();
+        $id = (string) Uuid::uuid4()->toString();
         $categoryName = 'teste de categoria';
 
         $mockEntity = Mockery::mock(Entity::class, [
-            $uuid,
+            $id,
             $categoryName
         ]);
-        $mockEntity->shouldReceive('id')->andReturn($uuid);
+        $mockEntity->shouldReceive('id')->andReturn($id);
         $mockEntity->shouldReceive('createdAt')->andReturn(date('Y-m-d H:i:s'));
+        $mockEntity->shouldReceive('updatedAt')->andReturn(date('Y-m-d H:i:s'));
 
         $mockRepo = Mockery::mock(stdClass::class, RepositoryInterface::class);
-        $mockRepo->shouldReceive('insert')->once()->andReturn($mockEntity);
+        $mockRepo->shouldReceive('findById')->with($id)->andReturn($mockEntity);
 
         $mockInput = Mockery::mock(Input::class, [
-            $categoryName
+            $id
         ]);
 
         $useCase = new UseCase($mockRepo);
@@ -39,17 +40,18 @@ class CreateCategoryUseCaseUnitTest extends TestCase
 
         $this->assertInstanceOf(Output::class, $response);
         $this->assertEquals($categoryName, $response->name);
-        $this->assertEquals('', $response->description);
+        $this->assertEquals($id, $response->id);
 
         /**
-         * Spies
+         * spies
          */
         $mockSpy = Mockery::spy(stdClass::class, RepositoryInterface::class);
-        $mockSpy->shouldReceive('insert')->andReturn($mockEntity);
+        $mockSpy->shouldReceive('findById')->with($id)->andReturn($mockEntity);
 
         $useCase = new UseCase($mockSpy);
         $useCase->execute($mockInput);
-        $mockSpy->shouldHaveReceived('insert');
+        $mockSpy->shouldHaveReceived('findById');
+
     }
 
     protected function tearDown(): void

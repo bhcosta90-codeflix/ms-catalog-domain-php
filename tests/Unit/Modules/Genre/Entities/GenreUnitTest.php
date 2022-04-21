@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Domains\Entities;
+namespace Tests\Unit\Genre\Entities;
 
 use PHPUnit\Framework\TestCase;
 use Costa\Core\Modules\Genre\Entities\Genre;

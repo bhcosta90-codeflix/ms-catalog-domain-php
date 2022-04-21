@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\UseCase\Genre;
+namespace Tests\Unit\Genre\UseCases;
 
 use Costa\Core\Modules\Genre\Entities\Genre as Entity;
 use Costa\Core\Utils\Exceptions\NotFoundDomainException;

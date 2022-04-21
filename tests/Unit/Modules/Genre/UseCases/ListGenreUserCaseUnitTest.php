@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\UseCase\Genre;
+namespace Tests\Unit\Genre\UseCases;
 
 use Costa\Core\Modules\Genre\UseCases\ListGenreUseCase as UseCase;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
