@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\Utils\UseCases\Contracts;
+namespace Costa\Core\Utils\Contracts;
 
 interface TransactionContract
 {

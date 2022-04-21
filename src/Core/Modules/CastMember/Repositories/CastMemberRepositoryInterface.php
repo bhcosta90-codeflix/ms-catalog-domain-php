@@ -3,7 +3,7 @@
 namespace Costa\Core\Modules\CastMember\Repositories;
 
 use Costa\Core\Modules\CastMember\Entities\CastMember as Entity;
-use Costa\Core\Utils\Domains\Repositories\PaginationInterface;
+use Costa\Core\Utils\Contracts\PaginationInterface;
 
 interface CastMemberRepositoryInterface
 {

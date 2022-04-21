@@ -5,7 +5,7 @@ namespace Tests\Unit\UseCase\Genre;
 use Costa\Core\Modules\Genre\UseCases\ListGenreUseCase as UseCase;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
 
-use Costa\Core\Utils\Domains\Repositories\PaginationInterface;
+use Costa\Core\Utils\Contracts\PaginationInterface;
 use PHPUnit\Framework\TestCase;
 use Costa\Core\Modules\Genre\UseCases\DTO\List\Input;
 use Costa\Core\Modules\Genre\UseCases\DTO\List\Output;

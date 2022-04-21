@@ -3,7 +3,7 @@
 namespace Costa\Core\Modules\Category\Repositories;
 
 use Costa\Core\Modules\Category\Entities\Category as Entity;
-use Costa\Core\Utils\Domains\Repositories\PaginationInterface;
+use Costa\Core\Utils\Contracts\PaginationInterface;
 
 interface CategoryRepositoryInterface
 {

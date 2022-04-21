@@ -4,7 +4,7 @@ namespace Tests\Unit\UseCase\Category;
 
 use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface as RepositoryInterface;
 use Costa\Core\Modules\Category\UseCases\ListCategoryUseCase as UseCase;
-use Costa\Core\Utils\Domains\Repositories\PaginationInterface;
+use Costa\Core\Utils\Contracts\PaginationInterface;
 use Costa\Core\Modules\Category\UseCases\DTO\List\Input;
 use Costa\Core\Modules\Category\UseCases\DTO\List\Output;
 use Mockery;

@@ -2,7 +2,7 @@
 
 namespace Costa\Core\Modules\Genre\Repositories;
 
-use Costa\Core\Utils\Domains\Repositories\PaginationInterface;
+use Costa\Core\Utils\Contracts\PaginationInterface;
 use Costa\Core\Modules\Genre\Entities\Genre as Entity;
 
 interface GenreRepositoryInterface

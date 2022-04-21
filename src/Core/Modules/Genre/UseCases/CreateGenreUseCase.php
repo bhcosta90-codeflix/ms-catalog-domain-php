@@ -6,7 +6,7 @@ use Costa\Core\Modules\Genre\Entities\Genre;
 use Costa\Core\Utils\Domains\Exceptions\NotFoundDomainException;
 use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface;
-use Costa\Core\Utils\UseCases\Contracts\TransactionContract;
+use Costa\Core\Utils\Contracts\TransactionContract;
 use Throwable;
 
 final class CreateGenreUseCase

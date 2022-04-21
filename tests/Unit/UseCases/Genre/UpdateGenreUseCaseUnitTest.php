@@ -7,7 +7,7 @@ use Costa\Core\Utils\Domains\Exceptions\NotFoundDomainException;
 use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
 use Costa\Core\Utils\Domains\ValueObject\Uuid;
-use Costa\Core\Utils\UseCases\Contracts\TransactionContract;
+use Costa\Core\Utils\Contracts\TransactionContract;
 use Costa\Core\Modules\Genre\UseCases\UpdateGenreUseCase as UseCase;
 use Costa\Core\Modules\Genre\UseCases\DTO\Updated\Input;
 use Costa\Core\Modules\Genre\UseCases\DTO\Updated\Output;
