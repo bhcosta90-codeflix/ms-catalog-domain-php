@@ -3,7 +3,7 @@
 namespace Costa\Core\Modules\Genre\UseCases;
 
 use Costa\Core\Modules\Genre\Entities\Genre;
-use Costa\Core\Domains\Exceptions\NotFoundDomainException;
+use Costa\Core\Utils\Domains\Exceptions\NotFoundDomainException;
 use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface;
 use Costa\Core\UseCases\Contracts\TransactionContract;

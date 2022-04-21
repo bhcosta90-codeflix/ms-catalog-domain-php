@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\Domains\Exceptions;
+namespace Costa\Core\Utils\Domains\Exceptions;
 
 use Exception;
 

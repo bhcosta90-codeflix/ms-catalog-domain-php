@@ -2,9 +2,9 @@
 
 namespace Costa\Core\Modules\Genre\Entities;
 
-use Costa\Core\Domains\Traits\MagicMethodsTrait;
-use Costa\Core\Domains\Validations\DomainValidation;
-use Costa\Core\Domains\ValueObject\Uuid;
+use Costa\Core\Utils\Domains\Traits\MagicMethodsTrait;
+use Costa\Core\Utils\Domains\Validations\DomainValidation;
+use Costa\Core\Utils\Domains\ValueObject\Uuid;
 use DateTime;
 
 class Genre

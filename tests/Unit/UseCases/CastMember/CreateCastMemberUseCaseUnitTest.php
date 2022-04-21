@@ -5,7 +5,7 @@ namespace Tests\Unit\UseCase\CastMember;
 use Costa\Core\Modules\CastMember\Entities\CastMember as Entity;
 use Costa\Core\Modules\CastMember\Enums\CastMemberType;
 use Costa\Core\Modules\CastMember\Repositories\CastMemberRepositoryInterface as RepositoryInterface;
-use Costa\Core\Domains\ValueObject\Uuid;
+use Costa\Core\Utils\Domains\ValueObject\Uuid;
 use Costa\Core\Modules\CastMember\UseCases\CreateCastMemberUseCase as UseCase;
 use Costa\Core\Modules\CastMember\UseCases\DTO\Created\Input;
 use Costa\Core\Modules\CastMember\UseCases\DTO\Created\Output;

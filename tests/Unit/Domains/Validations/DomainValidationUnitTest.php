@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Domains\Validations;
 
-use Costa\Core\Domains\Exceptions\EntityValidationException;
-use Costa\Core\Domains\Validations\DomainValidation;
+use Costa\Core\Utils\Domains\Exceptions\EntityValidationException;
+use Costa\Core\Utils\Domains\Validations\DomainValidation;
 use PHPUnit\Framework\TestCase;
 
 class DomainValidationUnitTest extends TestCase

@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\UseCase\Genre;
 
-use Costa\Core\Domains\ValueObject\Uuid;
+use Costa\Core\Utils\Domains\ValueObject\Uuid;
 use Costa\Core\Modules\Genre\Entities\Genre as Entity;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
 use Costa\Core\Modules\Genre\UseCases\DeleteGenreUseCase as UseCase;

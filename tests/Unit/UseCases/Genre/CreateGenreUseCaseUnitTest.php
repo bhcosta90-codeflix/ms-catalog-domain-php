@@ -3,10 +3,10 @@
 namespace Tests\Unit\UseCase\Genre;
 
 use Costa\Core\Modules\Genre\Entities\Genre as Entity;
-use Costa\Core\Domains\Exceptions\NotFoundDomainException;
+use Costa\Core\Utils\Domains\Exceptions\NotFoundDomainException;
 use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
-use Costa\Core\Domains\ValueObject\Uuid;
+use Costa\Core\Utils\Domains\ValueObject\Uuid;
 use Costa\Core\UseCases\Contracts\TransactionContract;
 use Costa\Core\Modules\Genre\UseCases\CreateGenreUseCase as UseCase;
 use Costa\Core\Modules\Genre\UseCases\DTO\Created\Input;

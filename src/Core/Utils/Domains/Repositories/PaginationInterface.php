@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\Domains\Repositories;
+namespace Costa\Core\Utils\Domains\Repositories;
 
 use stdClass;
 
