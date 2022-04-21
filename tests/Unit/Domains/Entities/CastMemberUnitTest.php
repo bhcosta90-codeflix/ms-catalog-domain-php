@@ -4,8 +4,8 @@ namespace Tests\Unit\Domains\Entities;
 
 use Costa\Core\Modules\CastMember\Entities\CastMember;
 use Costa\Core\Modules\CastMember\Enums\CastMemberType;
-use Costa\Core\Utils\Domains\Exceptions\EntityValidationException;
-use Costa\Core\Utils\Domains\ValueObject\Uuid;
+use Costa\Core\Utils\Exceptions\EntityValidationException;
+use Costa\Core\Utils\ValueObject\Uuid;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

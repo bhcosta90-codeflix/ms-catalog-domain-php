@@ -5,7 +5,7 @@ namespace Tests\Unit\UseCase\Genre;
 use Costa\Core\Modules\Genre\Entities\Genre as Entity;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
 use Costa\Core\Modules\Genre\UseCases\GetGenreUseCase as UseCase;
-use Costa\Core\Utils\Domains\ValueObject\Uuid;
+use Costa\Core\Utils\ValueObject\Uuid;
 use PHPUnit\Framework\TestCase;
 use Costa\Core\Modules\Genre\UseCases\DTO\Find\Input;
 use Costa\Core\Modules\Genre\UseCases\DTO\Find\Output;

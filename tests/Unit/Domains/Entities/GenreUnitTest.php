@@ -4,8 +4,8 @@ namespace Tests\Unit\Domains\Entities;
 
 use PHPUnit\Framework\TestCase;
 use Costa\Core\Modules\Genre\Entities\Genre;
-use Costa\Core\Utils\Domains\Exceptions\EntityValidationException;
-use Costa\Core\Utils\Domains\ValueObject\Uuid;
+use Costa\Core\Utils\Exceptions\EntityValidationException;
+use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
 use Ramsey\Uuid\Uuid as UuidUuid;
 

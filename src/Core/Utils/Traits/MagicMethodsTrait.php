@@ -1,8 +1,8 @@
 <?php
 
-namespace Costa\Core\Utils\Domains\Traits;
+namespace Costa\Core\Utils\Traits;
 
-use Costa\Core\Utils\Domains\Exceptions\PropertyException;
+use Costa\Core\Utils\Exceptions\PropertyException;
 
 trait MagicMethodsTrait
 {

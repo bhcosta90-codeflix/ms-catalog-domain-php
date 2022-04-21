@@ -3,9 +3,9 @@
 namespace Costa\Core\Modules\CastMember\Entities;
 
 use Costa\Core\Modules\CastMember\Enums\CastMemberType;
-use Costa\Core\Utils\Domains\Traits\MagicMethodsTrait;
-use Costa\Core\Utils\Domains\Validations\DomainValidation;
-use Costa\Core\Utils\Domains\ValueObject\Uuid;
+use Costa\Core\Utils\Traits\MagicMethodsTrait;
+use Costa\Core\Utils\Validations\DomainValidation;
+use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
 
 class CastMember

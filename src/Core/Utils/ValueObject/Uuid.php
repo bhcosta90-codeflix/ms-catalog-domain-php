@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\Utils\Domains\ValueObject;
+namespace Costa\Core\Utils\ValueObject;
 
 use InvalidArgumentException;
 use Ramsey\Uuid\Uuid as RamseyUuid;

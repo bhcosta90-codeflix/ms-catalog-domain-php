@@ -1,8 +1,8 @@
 <?php
 
-namespace Costa\Core\Utils\Domains\Validations;
+namespace Costa\Core\Utils\Validations;
 
-use Costa\Core\Utils\Domains\Exceptions\EntityValidationException;
+use Costa\Core\Utils\Exceptions\EntityValidationException;
 
 final class DomainValidation
 {
