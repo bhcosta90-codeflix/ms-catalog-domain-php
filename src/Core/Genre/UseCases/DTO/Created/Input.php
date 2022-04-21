@@ -1,13 +1,13 @@
 <?php
 
-namespace Costa\Core\UseCases\Genre\DTO\Updated;
+namespace Costa\Core\Genre\UseCases\DTO\Created;
 
 class Input
 {
     public function __construct(
-        public string $id,
         public string $name,
-        public ?bool $isActive = null,
+        public bool $isActive = true,
+        public string $createdAt = '',
         public ?array $categories = null,
     ) {
         //

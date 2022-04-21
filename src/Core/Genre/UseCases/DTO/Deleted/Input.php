@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\Genre\DTO\Find;
+namespace Costa\Core\Genre\UseCases\DTO\Deleted;
 
 class Input
 {

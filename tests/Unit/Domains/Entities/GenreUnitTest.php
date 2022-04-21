@@ -3,7 +3,7 @@
 namespace Tests\Unit\Domains\Entities;
 
 use PHPUnit\Framework\TestCase;
-use Costa\Core\Domains\Entities\Genre;
+use Costa\Core\Genre\Entities\Genre;
 use Costa\Core\Domains\Exceptions\EntityValidationException;
 use Costa\Core\Domains\ValueObject\Uuid;
 use DateTime;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Costa\Core\UseCases\Genre;
+namespace Costa\Core\Genre\UseCases;
 
-use Costa\Core\Domains\Repositories\GenreRepositoryInterface;
+use Costa\Core\Genre\Repositories\GenreRepositoryInterface;
 
 class ListGenreUseCase
 {

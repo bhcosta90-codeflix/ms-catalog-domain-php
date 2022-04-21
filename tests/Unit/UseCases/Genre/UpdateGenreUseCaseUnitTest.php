@@ -2,15 +2,15 @@
 
 namespace Tests\Unit\UseCase\Genre;
 
-use Costa\Core\Domains\Entities\Genre as Entity;
+use Costa\Core\Genre\Entities\Genre as Entity;
 use Costa\Core\Domains\Exceptions\NotFoundDomainException;
 use Costa\Core\Category\Repositories\CategoryRepositoryInterface;
-use Costa\Core\Domains\Repositories\GenreRepositoryInterface as RepositoryInterface;
+use Costa\Core\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
 use Costa\Core\Domains\ValueObject\Uuid;
 use Costa\Core\UseCases\Contracts\TransactionContract;
-use Costa\Core\UseCases\Genre\UpdateGenreUseCase as UseCase;
-use Costa\Core\UseCases\Genre\DTO\Updated\Input;
-use Costa\Core\UseCases\Genre\DTO\Updated\Output;
+use Costa\Core\Genre\UseCases\UpdateGenreUseCase as UseCase;
+use Costa\Core\Genre\UseCases\DTO\Updated\Input;
+use Costa\Core\Genre\UseCases\DTO\Updated\Output;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use stdClass;

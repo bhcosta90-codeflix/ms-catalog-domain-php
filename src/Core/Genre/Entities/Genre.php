@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\Domains\Entities;
+namespace Costa\Core\Genre\Entities;
 
 use Costa\Core\Domains\Traits\MagicMethodsTrait;
 use Costa\Core\Domains\Validations\DomainValidation;

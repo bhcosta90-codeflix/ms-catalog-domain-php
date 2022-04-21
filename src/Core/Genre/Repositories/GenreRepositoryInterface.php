@@ -1,8 +1,9 @@
 <?php
 
-namespace Costa\Core\Domains\Repositories;
+namespace Costa\Core\Genre\Repositories;
 
-use Costa\Core\Domains\Entities\Genre as Entity;
+use Costa\Core\Domains\Repositories\PaginationInterface;
+use Costa\Core\Genre\Entities\Genre as Entity;
 
 interface GenreRepositoryInterface
 {

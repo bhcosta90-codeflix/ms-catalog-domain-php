@@ -1,6 +1,6 @@
 <?php
 
-namespace Costa\Core\UseCases\Genre\DTO\List;
+namespace Costa\Core\Genre\UseCases\DTO\List;
 
 class Input
 {

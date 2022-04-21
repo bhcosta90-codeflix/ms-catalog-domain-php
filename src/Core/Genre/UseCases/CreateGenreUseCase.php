@@ -1,14 +1,15 @@
 <?php
 
-namespace Costa\Core\UseCases\Genre;
+namespace Costa\Core\Genre\UseCases;
 
+use Costa\Core\Genre\Entities\Genre;
 use Costa\Core\Domains\Exceptions\NotFoundDomainException;
 use Costa\Core\Category\Repositories\CategoryRepositoryInterface;
-use Costa\Core\Domains\Repositories\GenreRepositoryInterface;
+use Costa\Core\Genre\Repositories\GenreRepositoryInterface;
 use Costa\Core\UseCases\Contracts\TransactionContract;
 use Throwable;
 
-final class UpdateGenreUseCase
+final class CreateGenreUseCase
 {
     public function __construct(
         private GenreRepositoryInterface $repository,
@@ -18,36 +19,32 @@ final class UpdateGenreUseCase
         //
     }
 
-    public function execute(DTO\Updated\Input $input): DTO\Updated\Output
+    public function execute(DTO\Created\Input $input): DTO\Created\Output
     {
         try {
-            $repo = $this->repository->findById($input->id);
-
-            $input->isActive !== null ? ($input->isActive ? $repo->enable() : $repo->disable()) : null;
-
-            $repo->update(
+            $objGenre = new Genre(
                 name: $input->name,
+                isActive: $input->isActive,
+                categories: $input->categories
             );
-
-            foreach ($input->categories ?: [] as $category) {
-                $repo->addCategory($category);
-            }
 
             if ($input->categories !== null) {
                 $this->validateCategories($input->categories);
             }
 
-            $categoryUpdated = $this->repository->update($repo);
+            $genre = $this->repository->insert($objGenre);
+
             $this->transactionContract->commit();
 
-            return new DTO\Updated\Output(
-                id: $categoryUpdated->id,
-                name: $categoryUpdated->name,
-                is_active: $categoryUpdated->isActive,
-                created_at: $categoryUpdated->createdAt(),
-                updated_at: $categoryUpdated->updatedAt(),
+            return new DTO\Created\Output(
+                id: $genre->id(),
+                name: $genre->name,
+                is_active: $genre->isActive,
+                created_at: $genre->createdAt(),
+                updated_at: $genre->createdAt(),
             );
         } catch (Throwable $e) {
+            $this->transactionContract->rollback();
             throw $e;
         }
     }
