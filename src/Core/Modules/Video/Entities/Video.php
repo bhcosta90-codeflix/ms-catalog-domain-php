@@ -29,6 +29,7 @@ class Video
         private ?DateTime $createdAt = null,
         private ?Image $thumbFile = null,
         private ?Image $thumbHalf = null,
+        private ?Image $bannerFile = null,
         private ?Media $trailerFile = null,
         private ?Media $videoFile = null,
     ) {

@@ -36,6 +36,7 @@ class VideoUnitTest extends TestCase
         $this->assertFalse($entity->published);
         $this->assertNull($entity->thumbFile?->path);
         $this->assertNull($entity->thumbHalf?->path);
+        $this->assertNull($entity->bannerFile?->path);
         $this->assertNull($entity->trailerFile?->path);
         $this->assertNull($entity->trailerFile?->path);
         $this->assertNull($entity->videoFile?->path);
@@ -168,6 +169,23 @@ class VideoUnitTest extends TestCase
         $this->assertNotNull($entity->thumbHalf);
         $this->assertInstanceOf(Image::class, $entity->thumbHalf);
         $this->assertEquals('dakdopakd/teste.png', $entity->thumbHalf->path);
+    }
+
+    public function testValueObjectImageBanner()
+    {
+        $entity = new Video(
+            title: 'teste',
+            description: 'teste',
+            yearLaunched: 2029,
+            duration: 60,
+            opened: true,
+            rating: Rating::ER,
+            bannerFile: new Image('dakdopakd/teste.png')
+        );
+
+        $this->assertNotNull($entity->bannerFile);
+        $this->assertInstanceOf(Image::class, $entity->bannerFile);
+        $this->assertEquals('dakdopakd/teste.png', $entity->bannerFile->path);
     }
 
     public function testValueObjectMedia()
