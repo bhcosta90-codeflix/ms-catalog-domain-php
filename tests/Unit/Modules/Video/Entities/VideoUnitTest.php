@@ -86,4 +86,86 @@ class VideoUnitTest extends TestCase
         $entity->removeCategory(id: $uuidCategory);
         $this->assertCount(1, $entity->categories);
     }
+
+    public function testAddGenre(){
+        $uuidGenre = UuidUuid::uuid4()->toString();
+        $uuidGenre2 = UuidUuid::uuid4()->toString();
+
+        $entity = new Video(
+            title: 'teste',
+            description: 'teste',
+            yearLaunched: 2029,
+            duration: 60,
+            opened: true,
+            rating: Rating::ER,
+        );
+
+        $this->assertCount(0, $entity->genres);
+
+        $entity->addGenre(id: $uuidGenre);
+        $entity->addGenre(id: $uuidGenre2);
+
+        $this->assertCount(2, $entity->genres);
+    }
+
+    public function testRemoveGenre(){
+        $uuidGenre = UuidUuid::uuid4()->toString();
+        $uuidGenre2 = UuidUuid::uuid4()->toString();
+
+        $entity = new Video(
+            title: 'teste',
+            description: 'teste',
+            yearLaunched: 2029,
+            duration: 60,
+            opened: true,
+            rating: Rating::ER,
+        );
+
+        $entity->addGenre(id: $uuidGenre);
+        $entity->addGenre(id: $uuidGenre2);
+        $this->assertCount(2, $entity->genres);
+        $entity->removeGenre(id: $uuidGenre);
+        $this->assertCount(1, $entity->genres);
+    }
+
+    public function testAddCastMember(){
+        $uuidCastMember = UuidUuid::uuid4()->toString();
+        $uuidCastMember2 = UuidUuid::uuid4()->toString();
+
+        $entity = new Video(
+            title: 'teste',
+            description: 'teste',
+            yearLaunched: 2029,
+            duration: 60,
+            opened: true,
+            rating: Rating::ER,
+        );
+
+        $this->assertCount(0, $entity->castMembers);
+
+        $entity->addCastMember(id: $uuidCastMember);
+        $entity->addCastMember(id: $uuidCastMember2);
+
+        $this->assertCount(2, $entity->castMembers);
+    }
+
+    public function testRemoveCastMember(){
+        $uuidCastMember = UuidUuid::uuid4()->toString();
+        $uuidCastMember2 = UuidUuid::uuid4()->toString();
+
+        $entity = new Video(
+            title: 'teste',
+            description: 'teste',
+            yearLaunched: 2029,
+            duration: 60,
+            opened: true,
+            rating: Rating::ER,
+        );
+
+        $entity->addCastMember(id: $uuidCastMember);
+        $entity->addCastMember(id: $uuidCastMember2);
+        $this->assertCount(2, $entity->castMembers);
+        $entity->removeCastMember(id: $uuidCastMember);
+        $this->assertCount(1, $entity->castMembers);
+    }
 }
