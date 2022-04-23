@@ -34,30 +34,17 @@ class VideoUnitTest extends TestCase
 
     public function testId()
     {
-        $entity = new Video(
-            title: 'teste',
-            description: 'teste',
-            yearLaunched: 2029,
-            duration: 60,
-            opened: true,
-            rating: Rating::ER,
-        );
+        $entity = $this->getEntity();
 
         $this->assertNotEmpty($entity->id());
     }
 
-    public function testAddCategory(){
+    public function testAddCategory()
+    {
         $uuidCategory = UuidUuid::uuid4()->toString();
         $uuidCategory2 = UuidUuid::uuid4()->toString();
 
-        $entity = new Video(
-            title: 'teste',
-            description: 'teste',
-            yearLaunched: 2029,
-            duration: 60,
-            opened: true,
-            rating: Rating::ER,
-        );
+        $entity = $this->getEntity();
 
         $this->assertCount(0, $entity->categories);
 
@@ -67,18 +54,12 @@ class VideoUnitTest extends TestCase
         $this->assertCount(2, $entity->categories);
     }
 
-    public function testRemoveCategory(){
+    public function testRemoveCategory()
+    {
         $uuidCategory = UuidUuid::uuid4()->toString();
         $uuidCategory2 = UuidUuid::uuid4()->toString();
 
-        $entity = new Video(
-            title: 'teste',
-            description: 'teste',
-            yearLaunched: 2029,
-            duration: 60,
-            opened: true,
-            rating: Rating::ER,
-        );
+        $entity = $this->getEntity();
 
         $entity->addCategory(id: $uuidCategory);
         $entity->addCategory(id: $uuidCategory2);
@@ -87,18 +68,12 @@ class VideoUnitTest extends TestCase
         $this->assertCount(1, $entity->categories);
     }
 
-    public function testAddGenre(){
+    public function testAddGenre()
+    {
         $uuidGenre = UuidUuid::uuid4()->toString();
         $uuidGenre2 = UuidUuid::uuid4()->toString();
 
-        $entity = new Video(
-            title: 'teste',
-            description: 'teste',
-            yearLaunched: 2029,
-            duration: 60,
-            opened: true,
-            rating: Rating::ER,
-        );
+        $entity = $this->getEntity();
 
         $this->assertCount(0, $entity->genres);
 
@@ -108,18 +83,12 @@ class VideoUnitTest extends TestCase
         $this->assertCount(2, $entity->genres);
     }
 
-    public function testRemoveGenre(){
+    public function testRemoveGenre()
+    {
         $uuidGenre = UuidUuid::uuid4()->toString();
         $uuidGenre2 = UuidUuid::uuid4()->toString();
 
-        $entity = new Video(
-            title: 'teste',
-            description: 'teste',
-            yearLaunched: 2029,
-            duration: 60,
-            opened: true,
-            rating: Rating::ER,
-        );
+        $entity = $this->getEntity();
 
         $entity->addGenre(id: $uuidGenre);
         $entity->addGenre(id: $uuidGenre2);
@@ -128,18 +97,12 @@ class VideoUnitTest extends TestCase
         $this->assertCount(1, $entity->genres);
     }
 
-    public function testAddCastMember(){
+    public function testAddCastMember()
+    {
         $uuidCastMember = UuidUuid::uuid4()->toString();
         $uuidCastMember2 = UuidUuid::uuid4()->toString();
 
-        $entity = new Video(
-            title: 'teste',
-            description: 'teste',
-            yearLaunched: 2029,
-            duration: 60,
-            opened: true,
-            rating: Rating::ER,
-        );
+        $entity = $this->getEntity();
 
         $this->assertCount(0, $entity->castMembers);
 
@@ -149,11 +112,23 @@ class VideoUnitTest extends TestCase
         $this->assertCount(2, $entity->castMembers);
     }
 
-    public function testRemoveCastMember(){
+    public function testRemoveCastMember()
+    {
         $uuidCastMember = UuidUuid::uuid4()->toString();
         $uuidCastMember2 = UuidUuid::uuid4()->toString();
 
-        $entity = new Video(
+        $entity = $this->getEntity();
+
+        $entity->addCastMember(id: $uuidCastMember);
+        $entity->addCastMember(id: $uuidCastMember2);
+        $this->assertCount(2, $entity->castMembers);
+        $entity->removeCastMember(id: $uuidCastMember);
+        $this->assertCount(1, $entity->castMembers);
+    }
+
+    private function getEntity()
+    {
+        return new Video(
             title: 'teste',
             description: 'teste',
             yearLaunched: 2029,
@@ -161,11 +136,5 @@ class VideoUnitTest extends TestCase
             opened: true,
             rating: Rating::ER,
         );
-
-        $entity->addCastMember(id: $uuidCastMember);
-        $entity->addCastMember(id: $uuidCastMember2);
-        $this->assertCount(2, $entity->castMembers);
-        $entity->removeCastMember(id: $uuidCastMember);
-        $this->assertCount(1, $entity->castMembers);
     }
 }
