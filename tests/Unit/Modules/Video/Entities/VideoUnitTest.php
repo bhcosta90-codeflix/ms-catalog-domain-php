@@ -5,6 +5,8 @@ namespace Tests\Unit\Video\Entities;
 use PHPUnit\Framework\TestCase;
 use Costa\Core\Modules\Video\Entities\Video;
 use Costa\Core\Modules\Video\Enums\Rating;
+use Costa\Core\Modules\Video\Enums\Status;
+use Costa\Core\Modules\Video\ValueObject\{Image, Media};
 use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
 use Ramsey\Uuid\Uuid as UuidUuid;
@@ -32,6 +34,11 @@ class VideoUnitTest extends TestCase
         $this->assertEquals(Rating::ER, $entity->rating);
         $this->assertTrue($entity->opened);
         $this->assertFalse($entity->published);
+        $this->assertNull($entity->thumbFile?->path);
+        $this->assertNull($entity->thumbHalf?->path);
+        $this->assertNull($entity->trailerFile?->path);
+        $this->assertNull($entity->trailerFile?->path);
+        $this->assertNull($entity->videoFile?->path);
     }
 
     public function testIdAndCreatedAt()
@@ -127,6 +134,76 @@ class VideoUnitTest extends TestCase
         $this->assertCount(2, $entity->castMembers);
         $entity->removeCastMember(id: $uuidCastMember);
         $this->assertCount(1, $entity->castMembers);
+    }
+
+    public function testValueObjectImage()
+    {
+        $entity = new Video(
+            title: 'teste',
+            description: 'teste',
+            yearLaunched: 2029,
+            duration: 60,
+            opened: true,
+            rating: Rating::ER,
+            thumbFile: new Image('dakdopakd/teste.png')
+        );
+
+        $this->assertNotNull($entity->thumbFile);
+        $this->assertInstanceOf(Image::class, $entity->thumbFile);
+        $this->assertEquals('dakdopakd/teste.png', $entity->thumbFile->path);
+    }
+
+    public function testValueObjectImageToThumbHalf()
+    {
+        $entity = new Video(
+            title: 'teste',
+            description: 'teste',
+            yearLaunched: 2029,
+            duration: 60,
+            opened: true,
+            rating: Rating::ER,
+            thumbHalf: new Image('dakdopakd/teste.png')
+        );
+
+        $this->assertNotNull($entity->thumbHalf);
+        $this->assertInstanceOf(Image::class, $entity->thumbHalf);
+        $this->assertEquals('dakdopakd/teste.png', $entity->thumbHalf->path);
+    }
+
+    public function testValueObjectMedia()
+    {
+        $entity = new Video(
+            title: 'teste',
+            description: 'teste',
+            yearLaunched: 2029,
+            duration: 60,
+            opened: true,
+            rating: Rating::ER,
+            trailerFile: new Media('dakdopakd/teste.pm4')
+        );
+
+        $this->assertNotNull($entity->trailerFile);
+        $this->assertInstanceOf(Media::class, $entity->trailerFile);
+        $this->assertEquals('dakdopakd/teste.pm4', $entity->trailerFile->path);
+        $this->assertEquals(Status::PENDING, $entity->trailerFile->status);
+    }
+
+    public function testValueObjectVideo()
+    {
+        $entity = new Video(
+            title: 'teste',
+            description: 'teste',
+            yearLaunched: 2029,
+            duration: 60,
+            opened: true,
+            rating: Rating::ER,
+            videoFile: new Media('dakdopakd/teste.pm4')
+        );
+
+        $this->assertNotNull($entity->videoFile);
+        $this->assertInstanceOf(Media::class, $entity->videoFile);
+        $this->assertEquals('dakdopakd/teste.pm4', $entity->videoFile->path);
+        $this->assertEquals(Status::PENDING, $entity->videoFile->status);
     }
 
     private function getEntity()

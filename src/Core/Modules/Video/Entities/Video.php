@@ -3,6 +3,8 @@
 namespace Costa\Core\Modules\Video\Entities;
 
 use Costa\Core\Modules\Video\Enums\Rating;
+use Costa\Core\Modules\Video\ValueObject\Image;
+use Costa\Core\Modules\Video\ValueObject\Media;
 use Costa\Core\Utils\Traits\MagicMethodsTrait;
 use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
@@ -25,6 +27,10 @@ class Video
         private bool $published = false,
         private ?Uuid $id = null,
         private ?DateTime $createdAt = null,
+        private ?Image $thumbFile = null,
+        private ?Image $thumbHalf = null,
+        private ?Media $trailerFile = null,
+        private ?Media $videoFile = null,
     ) {
         $this->id = $this->id ?? Uuid::random();
         $this->createdAt = $this->createdAt ?: new DateTime();
