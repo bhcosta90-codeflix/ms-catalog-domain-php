@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Costa\Core\Modules\Video\Entities\Video;
 use Costa\Core\Modules\Video\Enums\Rating;
 use Costa\Core\Utils\ValueObject\Uuid;
+use DateTime;
 use Ramsey\Uuid\Uuid as UuidUuid;
 
 class VideoUnitTest extends TestCase
@@ -20,6 +21,7 @@ class VideoUnitTest extends TestCase
             duration: 60,
             opened: true,
             rating: Rating::ER,
+            createdAt: new DateTime('2022-01-01 00:00:00'),
         );
 
         $this->assertEquals($id, $entity->id());
@@ -32,11 +34,12 @@ class VideoUnitTest extends TestCase
         $this->assertFalse($entity->published);
     }
 
-    public function testId()
+    public function testIdAndCreatedAt()
     {
         $entity = $this->getEntity();
 
         $this->assertNotEmpty($entity->id());
+        $this->assertNotEmpty($entity->createdAt());
     }
 
     public function testAddCategory()

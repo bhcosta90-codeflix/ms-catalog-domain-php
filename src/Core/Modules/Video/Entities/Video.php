@@ -5,6 +5,7 @@ namespace Costa\Core\Modules\Video\Entities;
 use Costa\Core\Modules\Video\Enums\Rating;
 use Costa\Core\Utils\Traits\MagicMethodsTrait;
 use Costa\Core\Utils\ValueObject\Uuid;
+use DateTime;
 
 class Video
 {
@@ -23,8 +24,10 @@ class Video
         private Rating $rating,
         private bool $published = false,
         private ?Uuid $id = null,
+        private ?DateTime $createdAt = null,
     ) {
         $this->id = $this->id ?? Uuid::random();
+        $this->createdAt = $this->createdAt ?: new DateTime();
     }
 
     public function addCategory($id)
