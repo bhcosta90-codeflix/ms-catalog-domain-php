@@ -147,8 +147,8 @@ class GenreUnitTest extends TestCase
 
         $this->assertIsArray($genre->categories);
         $this->assertCount(0, $genre->categories);
-        $genre->addCategory(category: $idCategory);
-        $genre->addCategory(category: $idCategory);
+        $genre->addCategory(id: $idCategory);
+        $genre->addCategory(id: $idCategory);
         $this->assertCount(2, $genre->categories);
     }
 
@@ -166,7 +166,7 @@ class GenreUnitTest extends TestCase
         );
 
         $this->assertCount(2, $genre->categories);
-        $genre->removeCategory(category: $idCategory);
+        $genre->removeCategory(id: $idCategory);
         $this->assertCount(1, $genre->categories);
         
         $this->assertEquals($idCategory2, $genre->categories[1]);

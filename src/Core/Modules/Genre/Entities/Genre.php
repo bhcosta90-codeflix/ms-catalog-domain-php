@@ -44,14 +44,14 @@ class Genre
         $this->validated();
     }
 
-    public function addCategory(string $category)
+    public function addCategory(string $id)
     {
-        array_push($this->categories, $category);
+        array_push($this->categories, $id);
     }
 
-    public function removeCategory(string $category)
+    public function removeCategory(string $id)
     {
-        unset($this->categories[array_search($category, $this->categories)]);
+        unset($this->categories[array_search($id, $this->categories)]);
     }
 
     protected function validated()
