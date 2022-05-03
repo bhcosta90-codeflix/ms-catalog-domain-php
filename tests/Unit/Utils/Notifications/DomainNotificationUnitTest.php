@@ -117,12 +117,12 @@ class DomainNotificationUnitTest extends TestCase
         $notification = new DomainNotification;
         $notification->addError([
             'context' => 'video',
-            'message' => 'video title is required testToArrayFilter'
+            'message' => $v = 'video title is required testToArrayFilter'
         ]);
 
         $notification->addError([
             'context' => 'video',
-            'message' => 'video title is required 4'
+            'message' => $x = 'video title is required 4'
         ]);
 
         $notification->addError([
@@ -134,8 +134,8 @@ class DomainNotificationUnitTest extends TestCase
 
         $this->assertEquals([
             'video' => [
-                'video title is required testToArrayFilter',
-                'video title is required 4'
+                $v,
+                $x
             ],
             'category' => [
                 'category is required',
