@@ -7,6 +7,7 @@ use Costa\Core\Modules\Video\Entities\Video;
 use Costa\Core\Modules\Video\Enums\Rating;
 use Costa\Core\Modules\Video\Enums\Status;
 use Costa\Core\Modules\Video\ValueObject\{Image, Media};
+use Costa\Core\Utils\Exceptions\EntityValidationException;
 use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
 use Ramsey\Uuid\Uuid as UuidUuid;
@@ -146,12 +147,12 @@ class VideoUnitTest extends TestCase
             duration: 60,
             opened: true,
             rating: Rating::ER,
-            thumbFile: new Image('dakdopakd/teste.png')
+            thumbFile: new Image('arquivo/teste.png')
         );
 
         $this->assertNotNull($entity->thumbFile);
         $this->assertInstanceOf(Image::class, $entity->thumbFile);
-        $this->assertEquals('dakdopakd/teste.png', $entity->thumbFile->path);
+        $this->assertEquals('arquivo/teste.png', $entity->thumbFile->path);
     }
 
     public function testValueObjectImageToThumbHalf()
@@ -163,12 +164,12 @@ class VideoUnitTest extends TestCase
             duration: 60,
             opened: true,
             rating: Rating::ER,
-            thumbHalf: new Image('dakdopakd/teste.png')
+            thumbHalf: new Image('arquivo/teste4.png')
         );
 
         $this->assertNotNull($entity->thumbHalf);
         $this->assertInstanceOf(Image::class, $entity->thumbHalf);
-        $this->assertEquals('dakdopakd/teste.png', $entity->thumbHalf->path);
+        $this->assertEquals('arquivo/teste4.png', $entity->thumbHalf->path);
     }
 
     public function testValueObjectImageBanner()
@@ -180,12 +181,12 @@ class VideoUnitTest extends TestCase
             duration: 60,
             opened: true,
             rating: Rating::ER,
-            bannerFile: new Image('dakdopakd/teste.png')
+            bannerFile: new Image('arquivo/teste3.png')
         );
 
         $this->assertNotNull($entity->bannerFile);
         $this->assertInstanceOf(Image::class, $entity->bannerFile);
-        $this->assertEquals('dakdopakd/teste.png', $entity->bannerFile->path);
+        $this->assertEquals('arquivo/teste3.png', $entity->bannerFile->path);
     }
 
     public function testValueObjectMedia()
@@ -197,12 +198,12 @@ class VideoUnitTest extends TestCase
             duration: 60,
             opened: true,
             rating: Rating::ER,
-            trailerFile: new Media('dakdopakd/teste.pm4')
+            trailerFile: new Media('arquivo/teste2.pm4')
         );
 
         $this->assertNotNull($entity->trailerFile);
         $this->assertInstanceOf(Media::class, $entity->trailerFile);
-        $this->assertEquals('dakdopakd/teste.pm4', $entity->trailerFile->path);
+        $this->assertEquals('arquivo/teste2.pm4', $entity->trailerFile->path);
         $this->assertEquals(Status::PENDING, $entity->trailerFile->status);
     }
 
@@ -215,13 +216,28 @@ class VideoUnitTest extends TestCase
             duration: 60,
             opened: true,
             rating: Rating::ER,
-            videoFile: new Media('dakdopakd/teste.pm4')
+            videoFile: new Media('arquivo/teste.pm4')
         );
 
         $this->assertNotNull($entity->videoFile);
         $this->assertInstanceOf(Media::class, $entity->videoFile);
-        $this->assertEquals('dakdopakd/teste.pm4', $entity->videoFile->path);
+        $this->assertEquals('arquivo/teste.pm4', $entity->videoFile->path);
         $this->assertEquals(Status::PENDING, $entity->videoFile->status);
+    }
+
+    public function testValidation()
+    {
+        $this->expectException(EntityValidationException::class);
+        
+        new Video(
+            title: 't',
+            description: 't',
+            yearLaunched: 2029,
+            duration: 60,
+            opened: true,
+            rating: Rating::ER,
+            videoFile: new Media('arquivo/teste.pm4')
+        );
     }
 
     private function getEntity()

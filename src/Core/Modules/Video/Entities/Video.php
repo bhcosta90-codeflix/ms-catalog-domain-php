@@ -6,6 +6,7 @@ use Costa\Core\Modules\Video\Enums\Rating;
 use Costa\Core\Modules\Video\ValueObject\Image;
 use Costa\Core\Modules\Video\ValueObject\Media;
 use Costa\Core\Utils\Traits\MagicMethodsTrait;
+use Costa\Core\Utils\Validations\DomainValidation;
 use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
 
@@ -35,6 +36,8 @@ class Video
     ) {
         $this->id = $this->id ?? Uuid::random();
         $this->createdAt = $this->createdAt ?: new DateTime();
+
+        $this->validated();
     }
 
     public function addCategory($id)
@@ -65,5 +68,14 @@ class Video
     public function removeCastMember(string $id)
     {
         unset($this->castMembers[array_search($id, $this->castMembers)]);
+    }
+
+    protected function validated()
+    {
+        DomainValidation::strMaxLength($this->title);
+        DomainValidation::strMinLength($this->title);
+
+        DomainValidation::strCanNullAndMinLength($this->description);
+        DomainValidation::strCanNullAndMaxLength($this->description);
     }
 }
