@@ -19,7 +19,7 @@ class DomainNotificationUnitTest extends TestCase
         $notification = new DomainNotification;
         $notification->addError([
             'context' => 'video',
-            'message' => 'video title is required'
+            'message' => 'video title is required testAddErrors'
         ]);
         $errors = $notification->getErros();
         $this->assertCount(1, $errors);
@@ -32,7 +32,7 @@ class DomainNotificationUnitTest extends TestCase
 
         $notification->addError([
             'context' => 'video',
-            'message' => 'video title is required'
+            'message' => 'video title is required testHasErrors'
         ]);
         $this->assertTrue($notification->hasError());
     }
@@ -42,7 +42,7 @@ class DomainNotificationUnitTest extends TestCase
         $notification = new DomainNotification;
         $notification->addError([
             'context' => 'video',
-            'message' => 'video title is required'
+            'message' => 'video title is required testMessage'
         ]);
 
         $notification->addError([
@@ -52,12 +52,12 @@ class DomainNotificationUnitTest extends TestCase
 
         $this->assertIsString($notification->message());
         $this->assertEquals(
-            'video: video title is required, description: description is required',
+            'video: video title is required testMessage, description: description is required',
             $notification->message()
         );
 
         $this->assertEquals(
-            'video: video title is required, description: description is required',
+            'video: video title is required testMessage, description: description is required',
             (string) $notification
         );
     }
@@ -68,7 +68,7 @@ class DomainNotificationUnitTest extends TestCase
         
         $notification->addError([
             'context' => 'video',
-            'message' => 'video title is required'
+            'message' => 'video title is required testMessageFilterContext'
         ]);
 
         $notification->addError([
@@ -84,7 +84,7 @@ class DomainNotificationUnitTest extends TestCase
         $this->assertCount(3, $notification->getErros());
 
         $this->assertEquals(
-            'video: video title is required',
+            'video: video title is required testMessageFilterContext',
             $notification->message(context: 'video')
         );
     }
@@ -94,7 +94,7 @@ class DomainNotificationUnitTest extends TestCase
         $notification = new DomainNotification;
         $notification->addError([
             'context' => 'video',
-            'message' => 'video title is required'
+            'message' => 'video title is required testToArray'
         ]);
 
         $notification->addError([
@@ -106,7 +106,7 @@ class DomainNotificationUnitTest extends TestCase
 
         $this->assertEquals([
             'video' => [
-                'video title is required',
+                'video title is required testToArray',
                 'video title is required 2'
             ]
         ], $notification->toArray());
@@ -117,12 +117,12 @@ class DomainNotificationUnitTest extends TestCase
         $notification = new DomainNotification;
         $notification->addError([
             'context' => 'video',
-            'message' => 'video title is required'
+            'message' => 'video title is required testToArrayFilter'
         ]);
 
         $notification->addError([
             'context' => 'video',
-            'message' => 'video title is required 2'
+            'message' => 'video title is required 4'
         ]);
 
         $notification->addError([
@@ -134,8 +134,8 @@ class DomainNotificationUnitTest extends TestCase
 
         $this->assertEquals([
             'video' => [
-                'video title is required',
-                'video title is required 2'
+                'video title is required testToArrayFilter',
+                'video title is required 4'
             ],
             'category' => [
                 'category is required',
@@ -144,8 +144,8 @@ class DomainNotificationUnitTest extends TestCase
         
         $this->assertEquals([
             'video' => [
-                'video title is required',
-                'video title is required 2'
+                'video title is required testToArrayFilter',
+                'video title is required 4'
             ]
         ], $notification->toArray(context: 'video'));
     }

@@ -5,35 +5,37 @@ namespace Costa\Core\Modules\Video\Entities;
 use Costa\Core\Modules\Video\Enums\Rating;
 use Costa\Core\Modules\Video\ValueObject\Image;
 use Costa\Core\Modules\Video\ValueObject\Media;
-use Costa\Core\Utils\Traits\MagicMethodsTrait;
-use Costa\Core\Utils\Validations\DomainValidation;
+use Costa\Core\Utils\Abstracts\EntityAbstract;
+use Costa\Core\Utils\Exceptions\DomainNotificationException;
+use Costa\Core\Utils\Notifications\DomainNotification;
 use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
+use Exception;
 
-class Video
+class Video extends EntityAbstract
 {
-    use MagicMethodsTrait;
-
     protected array $categories = [];
     protected array $genres = [];
     protected array $castMembers = [];
 
     public function __construct(
-        private string $title,
-        private string $description,
-        private int $yearLaunched,
-        private int $duration,
-        private bool $opened,
-        private Rating $rating,
-        private bool $published = false,
-        private ?Uuid $id = null,
-        private ?DateTime $createdAt = null,
-        private ?Image $thumbFile = null,
-        private ?Image $thumbHalf = null,
-        private ?Image $bannerFile = null,
-        private ?Media $trailerFile = null,
-        private ?Media $videoFile = null,
+        protected string $title,
+        protected string $description,
+        protected int $yearLaunched,
+        protected int $duration,
+        protected bool $opened,
+        protected Rating $rating,
+        protected bool $published = false,
+        protected ?Uuid $id = null,
+        protected ?DateTime $createdAt = null,
+        protected ?Image $thumbFile = null,
+        protected ?Image $thumbHalf = null,
+        protected ?Image $bannerFile = null,
+        protected ?Media $trailerFile = null,
+        protected ?Media $videoFile = null,
     ) {
+        parent::__construct();
+
         $this->id = $this->id ?? Uuid::random();
         $this->createdAt = $this->createdAt ?: new DateTime();
 
@@ -72,10 +74,29 @@ class Video
 
     protected function validated()
     {
-        DomainValidation::strMaxLength($this->title);
-        DomainValidation::strMinLength($this->title);
+        if (empty($this->title)) {
+            $this->domainNotification->addError([
+                'context' => 'video',
+                'message' => 'should not be empty or null'
+            ]);
+        }
 
-        DomainValidation::strCanNullAndMinLength($this->description);
-        DomainValidation::strCanNullAndMaxLength($this->description);
+        if (strlen($this->title) < 3) {
+            $this->domainNotification->addError([
+                'context' => 'video',
+                'message' => 'invalid quantity'
+            ]);
+        }
+
+        if ($this->description && strlen($this->description) < 3) {
+            $this->domainNotification->addError([
+                'context' => 'description',
+                'message' => 'invalid quantity'
+            ]);
+        }
+
+        if ($this->domainNotification->hasError()) {
+            throw new DomainNotificationException($this->domainNotification);
+        }
     }
 }

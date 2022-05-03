@@ -7,7 +7,7 @@ use Costa\Core\Modules\Video\Entities\Video;
 use Costa\Core\Modules\Video\Enums\Rating;
 use Costa\Core\Modules\Video\Enums\Status;
 use Costa\Core\Modules\Video\ValueObject\{Image, Media};
-use Costa\Core\Utils\Exceptions\EntityValidationException;
+use Costa\Core\Utils\Exceptions\DomainNotificationException;
 use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
 use Ramsey\Uuid\Uuid as UuidUuid;
@@ -216,18 +216,19 @@ class VideoUnitTest extends TestCase
             duration: 60,
             opened: true,
             rating: Rating::ER,
-            videoFile: new Media('arquivo/teste.pm4')
+            videoFile: new Media('arquivo/teste5.pm4')
         );
 
         $this->assertNotNull($entity->videoFile);
         $this->assertInstanceOf(Media::class, $entity->videoFile);
-        $this->assertEquals('arquivo/teste.pm4', $entity->videoFile->path);
+        $this->assertEquals('arquivo/teste5.pm4', $entity->videoFile->path);
         $this->assertEquals(Status::PENDING, $entity->videoFile->status);
     }
 
     public function testValidation()
     {
-        $this->expectException(EntityValidationException::class);
+        $this->expectException(DomainNotificationException::class);
+        $this->expectErrorMessage('video: invalid quantity, description: invalid quantity');
         
         new Video(
             title: 't',
