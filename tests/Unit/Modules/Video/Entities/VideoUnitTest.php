@@ -228,7 +228,7 @@ class VideoUnitTest extends TestCase
     public function testValidation()
     {
         $this->expectException(DomainNotificationException::class);
-        $this->expectErrorMessage('video: invalid quantity, description: invalid quantity');
+        $this->expectErrorMessage('video: The Title minimum is 3, video: The Description minimum is 3');
         
         new Video(
             title: 't',

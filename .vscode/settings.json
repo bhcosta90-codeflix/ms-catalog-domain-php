@@ -1,3 +1,7 @@
 {
-    "intelephense.diagnostics.typeErrors": false
+    "intelephense.diagnostics.typeErrors": false,
+    "cSpell.words": [
+        "Laravel",
+        "Rakit"
+    ]
 }

@@ -17,6 +17,7 @@
         "mockery/mockery": "^1.5"
     },
     "require": {
-        "ramsey/uuid": "^4.3"
+        "ramsey/uuid": "^4.3",
+        "rakit/validation": "^1.4"
     }
 }

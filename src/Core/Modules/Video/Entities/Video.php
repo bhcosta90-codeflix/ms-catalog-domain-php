@@ -7,7 +7,7 @@ use Costa\Core\Modules\Video\ValueObject\Image;
 use Costa\Core\Modules\Video\ValueObject\Media;
 use Costa\Core\Utils\Abstracts\EntityAbstract;
 use Costa\Core\Utils\Exceptions\DomainNotificationException;
-use Costa\Core\Utils\Notifications\DomainNotification;
+use Costa\Core\Utils\Factories\VideoValidatorFactory;
 use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
 use Exception;
@@ -74,29 +74,10 @@ class Video extends EntityAbstract
 
     protected function validated()
     {
-        if (empty($this->title)) {
-            $this->domainNotification->addError([
-                'context' => 'video',
-                'message' => 'should not be empty or null'
-            ]);
-        }
+        VideoValidatorFactory::create()->validate($this);
 
-        if (strlen($this->title) < 3) {
-            $this->domainNotification->addError([
-                'context' => 'video',
-                'message' => 'invalid quantity'
-            ]);
-        }
-
-        if ($this->description && strlen($this->description) < 3) {
-            $this->domainNotification->addError([
-                'context' => 'description',
-                'message' => 'invalid quantity'
-            ]);
-        }
-
-        if ($this->domainNotification->hasError()) {
-            throw new DomainNotificationException($this->domainNotification);
+        if ($this->notifications->hasError()) {
+            throw new DomainNotificationException($this->notifications);
         }
     }
 }

@@ -9,10 +9,10 @@ abstract class EntityAbstract
 {
     use MagicMethodsTrait;
 
-    protected DomainNotification $domainNotification;
+    protected DomainNotification $notifications;
 
     public function __construct()
     {
-        $this->domainNotification = new DomainNotification;
+        $this->notifications = new DomainNotification;
     }
 }
