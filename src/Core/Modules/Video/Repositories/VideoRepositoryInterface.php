@@ -22,4 +22,5 @@ interface VideoRepositoryInterface
     public function update(Entity $entity): EntityInterface;
     public function delete(Entity $entity): bool;
     public function toEntity(object $object): EntityInterface;
+    public function updateMedia(Entity $entity): EntityInterface;
 }
