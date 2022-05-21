@@ -7,7 +7,7 @@ use Costa\Core\Utils\Exceptions\NotFoundDomainException;
 use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;
 use Costa\Core\Utils\ValueObject\Uuid;
-use Costa\Core\Utils\Contracts\TransactionContract;
+use Costa\Core\Utils\Contracts\TransactionInterface;
 use Costa\Core\Modules\Genre\UseCases\CreateGenreUseCase as UseCase;
 use Costa\Core\Modules\Genre\UseCases\DTO\Created\Input;
 use Costa\Core\Modules\Genre\UseCases\DTO\Created\Output;
@@ -81,7 +81,7 @@ class CreateGenreUseCaseUnitTest extends TestCase
     }
 
     private function mockTransaction(){
-        $mockTransaction = Mockery::mock(stdClass::class, TransactionContract::class);
+        $mockTransaction = Mockery::mock(stdClass::class, TransactionInterface::class);
         $mockTransaction->shouldReceive('commit');
         $mockTransaction->shouldReceive('rollback');
 

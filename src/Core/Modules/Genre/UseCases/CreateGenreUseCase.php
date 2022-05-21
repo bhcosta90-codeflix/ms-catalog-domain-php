@@ -6,14 +6,14 @@ use Costa\Core\Modules\Genre\Entities\Genre;
 use Costa\Core\Utils\Exceptions\NotFoundDomainException;
 use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface;
-use Costa\Core\Utils\Contracts\TransactionContract;
+use Costa\Core\Utils\Contracts\TransactionInterface;
 use Throwable;
 
 final class CreateGenreUseCase
 {
     public function __construct(
         private GenreRepositoryInterface $repository,
-        private TransactionContract $transactionContract,
+        private TransactionInterface $TransactionInterface,
         private CategoryRepositoryInterface $categoryRepositoryInterface,
     ) {
         //
@@ -34,7 +34,7 @@ final class CreateGenreUseCase
 
             $genre = $this->repository->insert($objGenre);
 
-            $this->transactionContract->commit();
+            $this->TransactionInterface->commit();
 
             return new DTO\Created\Output(
                 id: $genre->id(),
@@ -44,7 +44,7 @@ final class CreateGenreUseCase
                 updated_at: $genre->createdAt(),
             );
         } catch (Throwable $e) {
-            $this->transactionContract->rollback();
+            $this->TransactionInterface->rollback();
             throw $e;
         }
     }

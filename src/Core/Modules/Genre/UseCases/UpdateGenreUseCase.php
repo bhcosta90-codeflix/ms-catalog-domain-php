@@ -5,14 +5,14 @@ namespace Costa\Core\Modules\Genre\UseCases;
 use Costa\Core\Utils\Exceptions\NotFoundDomainException;
 use Costa\Core\Modules\Category\Repositories\CategoryRepositoryInterface;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface;
-use Costa\Core\Utils\Contracts\TransactionContract;
+use Costa\Core\Utils\Contracts\TransactionInterface;
 use Throwable;
 
 final class UpdateGenreUseCase
 {
     public function __construct(
         private GenreRepositoryInterface $repository,
-        private TransactionContract $transactionContract,
+        private TransactionInterface $TransactionInterface,
         private CategoryRepositoryInterface $categoryRepositoryInterface,
     ) {
         //
@@ -38,7 +38,7 @@ final class UpdateGenreUseCase
             }
 
             $categoryUpdated = $this->repository->update($repo);
-            $this->transactionContract->commit();
+            $this->TransactionInterface->commit();
 
             return new DTO\Updated\Output(
                 id: $categoryUpdated->id,
