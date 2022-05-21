@@ -38,7 +38,7 @@ final class UpdateGenreUseCase
             }
 
             $categoryUpdated = $this->repository->update($repo);
-            $this->TransactionInterface->commit();
+            $this->transactionInterface->commit();
 
             return new DTO\Updated\Output(
                 id: $categoryUpdated->id,

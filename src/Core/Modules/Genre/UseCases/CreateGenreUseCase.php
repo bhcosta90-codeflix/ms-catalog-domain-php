@@ -34,7 +34,7 @@ final class CreateGenreUseCase
 
             $genre = $this->repository->insert($objGenre);
 
-            $this->TransactionInterface->commit();
+            $this->transactionInterface->commit();
 
             return new DTO\Created\Output(
                 id: $genre->id(),
@@ -44,7 +44,7 @@ final class CreateGenreUseCase
                 updated_at: $genre->createdAt(),
             );
         } catch (Throwable $e) {
-            $this->TransactionInterface->rollback();
+            $this->transactionInterface->rollback();
             throw $e;
         }
     }
