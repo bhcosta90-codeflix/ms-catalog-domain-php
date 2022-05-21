@@ -12,7 +12,7 @@ final class UpdateGenreUseCase
 {
     public function __construct(
         private GenreRepositoryInterface $repository,
-        private TransactionInterface $TransactionInterface,
+        private TransactionInterface $transactionInterface,
         private CategoryRepositoryInterface $categoryRepositoryInterface,
     ) {
         //
