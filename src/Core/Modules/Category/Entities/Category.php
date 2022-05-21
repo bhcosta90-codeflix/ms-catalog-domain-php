@@ -2,12 +2,13 @@
 
 namespace Costa\Core\Modules\Category\Entities;
 
+use Costa\Core\Utils\Contracts\EntityInterface;
 use Costa\Core\Utils\Traits\MagicMethodsTrait;
 use Costa\Core\Utils\Validations\DomainValidation;
 use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
 
-class Category
+class Category implements EntityInterface
 {
     use MagicMethodsTrait;
 

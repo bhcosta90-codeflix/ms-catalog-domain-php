@@ -1,11 +1,11 @@
 <?php
 
-namespace Costa\Core\Modules\Genre\Repositories;
+namespace Costa\Core\Utils\Contracts;
 
 use Costa\Core\Utils\Contracts\EntityInterface;
 use Costa\Core\Utils\Contracts\PaginationInterface;
 
-interface GenreRepositoryInterface
+interface RepositoryInterface
 {
     public function insert(EntityInterface $entity): EntityInterface;
     public function findById(string $id): EntityInterface;

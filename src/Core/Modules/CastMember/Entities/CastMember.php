@@ -3,12 +3,13 @@
 namespace Costa\Core\Modules\CastMember\Entities;
 
 use Costa\Core\Modules\CastMember\Enums\CastMemberType;
+use Costa\Core\Utils\Contracts\EntityInterface;
 use Costa\Core\Utils\Traits\MagicMethodsTrait;
 use Costa\Core\Utils\Validations\DomainValidation;
 use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
 
-class CastMember
+class CastMember implements EntityInterface
 {
     use MagicMethodsTrait;
 

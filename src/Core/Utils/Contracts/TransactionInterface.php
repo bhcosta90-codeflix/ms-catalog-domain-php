@@ -2,7 +2,7 @@
 
 namespace Costa\Core\Utils\Contracts;
 
-interface TransactionContract
+interface TransactionInterface
 {
     public function commit(): void;
 

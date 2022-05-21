@@ -6,13 +6,14 @@ use Costa\Core\Modules\Video\Enums\Rating;
 use Costa\Core\Modules\Video\ValueObject\Image;
 use Costa\Core\Modules\Video\ValueObject\Media;
 use Costa\Core\Utils\Abstracts\EntityAbstract;
+use Costa\Core\Utils\Contracts\EntityInterface;
 use Costa\Core\Utils\Exceptions\DomainNotificationException;
 use Costa\Core\Utils\Factories\VideoValidatorFactory;
 use Costa\Core\Utils\ValueObject\Uuid;
 use DateTime;
 use Exception;
 
-class Video extends EntityAbstract
+class Video extends EntityAbstract implements EntityInterface
 {
     protected array $categories = [];
     protected array $genres = [];
@@ -70,6 +71,31 @@ class Video extends EntityAbstract
     public function removeCastMember(string $id)
     {
         unset($this->castMembers[array_search($id, $this->castMembers)]);
+    }
+
+    public function thumbFile(): ?Media
+    {
+        return $this->thumbFile;
+    }
+
+    public function thumbHalf(): ?Media
+    {
+        return $this->thumbHalf;
+    }
+
+    public function bannerFile(): ?Media
+    {
+        return $this->bannerFile;
+    }
+
+    public function trailerFile(): ?Media
+    {
+        return $this->trailerFile;
+    }
+
+    public function videoFile(): ?Media
+    {
+        return $this->videoFile;
     }
 
     protected function validated()
