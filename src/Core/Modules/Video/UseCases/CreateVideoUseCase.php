@@ -4,8 +4,10 @@ namespace Costa\Core\Modules\Video\UseCases;
 
 use Costa\Core\Modules\Video\Contracts\VideoEventManagerInterface;
 use Costa\Core\Modules\Video\Entities\Video;
+use Costa\Core\Modules\Video\Events\VideoCreatedEvent;
 use Costa\Core\Modules\Video\Repositories\VideoRepositoryInterface;
 use Costa\Core\Utils\Contracts\{FileStorageInterface, TransactionInterface};
+use Throwable;
 
 class CreateVideoUseCase
 {
@@ -20,6 +22,31 @@ class CreateVideoUseCase
 
     public function exec(DTO\Created\Input $input): DTO\Created\Output
     {
+        $entity = $this->createEntity($input);
+
+        try {
+            $this->repository->insert($entity);
+            if ($this->storeMedia($entity->id(), $input->files)) {
+                $this->event->dispatch(new VideoCreatedEvent($entity));
+            }
+            $this->transaction->commit();
+            return new DTO\Created\Output(
+                id: $entity->id(),
+                title: $entity->title,
+                description: $entity->description,
+                yearLaunched: $entity->yearLaunched,
+                duration: $entity->duration,
+                opened: true,
+                rating: $entity->rating,
+            );
+        } catch (Throwable $e) {
+            $this->transaction->rollback();
+            throw $e;
+        }
+    }
+
+    private function createEntity(DTO\Created\Input $input): Video
+    {
         $obj = new Video(
             title: $input->title,
             description: $input->description,
@@ -29,23 +56,25 @@ class CreateVideoUseCase
             rating: $input->rating,
         );
 
-        // add categories_id in entity - validate
-        // add genres_id in entity - validate
-        // add cast_members_id in entity - validate
+        foreach ($input->categories as $v) {
+            $obj->addCategory($v);
+        }
 
-        // repository persist in database
-        // storage of media, using the entity id persist
-        // dispatch event
-        // transaction
+        foreach ($input->genres as $v) {
+            $obj->addGenre($v);
+        }
 
-        return new DTO\Created\Output(
-            id: $obj->id(),
-            title: $obj->title,
-            description: $obj->description,
-            yearLaunched: $obj->yearLaunched,
-            duration: $obj->duration,
-            opened: $obj->opened,
-            rating: $obj->rating,
-        );
+        foreach ($input->castMembers as $v) {
+            $obj->addCastMember($v);
+        }
+
+        return $obj;
+    }
+
+    private function storeMedia(string $path, array $media): ?string
+    {
+        if (count($media)) {
+            return $this->storage->store($path, $media);
+        }
     }
 }

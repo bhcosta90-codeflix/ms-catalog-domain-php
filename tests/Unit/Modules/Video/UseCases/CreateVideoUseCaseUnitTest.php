@@ -69,7 +69,6 @@ class CreateVideoUseCaseUnitTest extends TestCase
             'teste',
             2000,
             500,
-            true,
             Rating::RATE10
         ]);
     }

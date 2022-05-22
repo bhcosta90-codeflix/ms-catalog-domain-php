@@ -11,8 +11,11 @@ class Input
         public string $description,
         public int $yearLaunched,
         public int $duration,
-        public bool $opened,
         public Rating $rating,
+        public array $categories = [],
+        public array $genres = [],
+        public array $castMembers = [],
+        public array $files = [],
     ) {
         //
     }
