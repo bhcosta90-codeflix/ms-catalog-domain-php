@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Category\Entities;
+namespace Tests\Unit\Modules\Category\Entities;
 
 use Costa\Core\Modules\Category\Entities\Category;
 use Costa\Core\Utils\Exceptions\EntityValidationException;

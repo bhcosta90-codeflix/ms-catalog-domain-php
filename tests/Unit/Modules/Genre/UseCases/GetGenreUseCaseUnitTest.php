@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Genre\UseCases;
+namespace Tests\Unit\Modules\Genre\UseCases;
 
 use Costa\Core\Modules\Genre\Entities\Genre as Entity;
 use Costa\Core\Modules\Genre\Repositories\GenreRepositoryInterface as RepositoryInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Video\Entities;
+namespace Tests\Unit\Modules\Video\Entities;
 
 use PHPUnit\Framework\TestCase;
 use Costa\Core\Modules\Video\Entities\Video;
