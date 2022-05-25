@@ -76,5 +76,7 @@ class CreateVideoUseCase
         if (count($media)) {
             return $this->storage->store($path, $media);
         }
+
+        return null;
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests\Unit\Modules\Video\UseCases;
 
 use Costa\Core\Modules\Video\Contracts\{VideoEventManagerInterface};
+use Costa\Core\Modules\Video\Entities\Video;
 use Costa\Core\Modules\Video\Enums\Rating;
 use Costa\Core\Modules\Video\Repositories\VideoRepositoryInterface;
 use PHPUnit\Framework\TestCase;
@@ -28,9 +29,16 @@ class CreateVideoUseCaseUnitTest extends TestCase
     }
 
     public function testExecInputOutput(){
+        $transaction = $this->getMockTransaction();
+        $transaction->shouldReceive('commit');
+        $transaction->shouldReceive('rollback');
+
+        $repository = $this->getMockRepository();
+        $repository->shouldReceive('insert')->andReturn($this->getMockEntity());
+
         $uc = new UseCase(
-            repository: $this->getMockRepository(),
-            transaction: $this->getMockTransaction(),
+            repository: $repository,
+            transaction: $transaction,
             storage: $this->getMockFileStorage(),
             event: $this->getMockVideoEventManagerInterface(),
         );
@@ -43,12 +51,17 @@ class CreateVideoUseCaseUnitTest extends TestCase
         $this->assertTrue(true);
     }
 
-    protected function getMockRepository(): VideoRepositoryInterface
+    protected function getMockEntity(): Video|Mockery\MockInterface
+    {
+        return Mockery::mock(stdClass::class, Video::class);
+    }
+
+    protected function getMockRepository(): VideoRepositoryInterface|Mockery\MockInterface
     {
         return Mockery::mock(stdClass::class, VideoRepositoryInterface::class);
     }
 
-    protected function getMockTransaction(): TransactionInterface
+    protected function getMockTransaction(): TransactionInterface|Mockery\MockInterface
     {
         $obj = Mockery::mock(stdClass::class, TransactionInterface::class);
         $obj->shouldReceive('rollback');
@@ -56,17 +69,17 @@ class CreateVideoUseCaseUnitTest extends TestCase
         return $obj;
     }
 
-    protected function getMockFileStorage(): FileStorageInterface
+    protected function getMockFileStorage(): FileStorageInterface|Mockery\MockInterface
     {
         return Mockery::mock(stdClass::class, FileStorageInterface::class);
     }
 
-    protected function getMockVideoEventManagerInterface(): VideoEventManagerInterface
+    protected function getMockVideoEventManagerInterface(): VideoEventManagerInterface|Mockery\MockInterface
     {
         return Mockery::mock(stdClass::class, VideoEventManagerInterface::class);
     }
 
-    protected function getMockInput(): CreatedInput
+    protected function getMockInput(): CreatedInput|Mockery\MockInterface
     {
         return Mockery::mock(CreatedInput::class, [
             'teste',
