@@ -52,7 +52,7 @@ class CreateVideoUseCase
             description: $input->description,
             yearLaunched: $input->yearLaunched,
             duration: $input->duration,
-            opened: $input->opened,
+            opened: true,
             rating: $input->rating,
         );
 
@@ -76,5 +76,7 @@ class CreateVideoUseCase
         if (count($media)) {
             return $this->storage->store($path, $media);
         }
+
+        return null;
     }
 }
